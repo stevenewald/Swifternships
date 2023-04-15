@@ -16,6 +16,7 @@ import { FirebaseContext } from "@auth/FirebaseContext";
 import Basic from "@student/Basic";
 import CheckLogin from "@auth/CheckLogin";
 import Login from "@auth/Login";
+import StudentSignup from "@student/StudentSignup";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -82,6 +83,7 @@ function Full() {
             }
           ></Route>
           <Route path="/login" element={<Login user={user}/>}></Route>
+          <Route path="/student_signup" element={<StudentSignup user={user} />}></Route>
         </Routes>
       </Router>
     </FirebaseContext.Provider>
