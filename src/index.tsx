@@ -5,13 +5,17 @@ import "firebase/compat/auth";
 import "firebase/compat/functions";
 import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 import { getStorage, connectStorageEmulator } from "firebase/storage";
-
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Hero from "@landing/Hero";
 import Features from "@landing/Features";
 import Team from "@landing/Team";
 import FAQs from "@landing/FAQs";
+import { FirebaseContext } from "@auth/FirebaseContext";
+import Basic from "@student/Basic";
+import CheckLogin from "@auth/CheckLogin";
+import Login from "@auth/Login";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,7 +23,7 @@ const root = ReactDOM.createRoot(
 
 const firebaseConfig = {
   apiKey: "AIzaSyA4jyxuftXidnBGhPBQ-XWMWvpTJeMmsfY",
-  authDomain: "swifternships.firebaseapp.com",
+  authDomain: "auth.swifternships.tech",
   databaseURL: "https://swifternships-default-rtdb.firebaseio.com",
   projectId: "swifternships",
   storageBucket: "swifternships.appspot.com",
@@ -50,20 +54,37 @@ if (window.location.hostname === "localhost") {
   storage = getStorage(app);
   database = getDatabase(app);
 }
-root.render(
-  <Router>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div>
-            <Hero />
-            <Features />
-            <Team />
-            <FAQs />
-          </div>
-        }
-      ></Route>
-    </Routes>
-  </Router>
-);
+
+function Full() {
+  const [user, setUser] = useState(null);
+  return (
+    <FirebaseContext.Provider value={{ firebase, database, storage, provider }}>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <Hero />
+                <Features />
+                <Team />
+                <FAQs />
+              </div>
+            }
+          ></Route>
+          <Route
+            path="/student"
+            element={
+              <>
+                <CheckLogin setUser={setUser} student={true}></CheckLogin>
+                <Basic user={user}/>
+              </>
+            }
+          ></Route>
+          <Route path="/login" element={<Login user={user}/>}></Route>
+        </Routes>
+      </Router>
+    </FirebaseContext.Provider>
+  );
+}
+root.render(<Full />);
