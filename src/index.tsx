@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Hero from "@landing/Hero";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/functions";
@@ -8,6 +7,11 @@ import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 import { getStorage, connectStorageEmulator } from "firebase/storage";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Hero from "@landing/Hero";
+import Features from "@landing/Features";
+import Team from "@landing/Team";
+import FAQs from "@landing/FAQs";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -54,6 +58,9 @@ root.render(
         element={
           <div>
             <Hero />
+            <Features />
+            <Team />
+            <FAQs />
           </div>
         }
       ></Route>
