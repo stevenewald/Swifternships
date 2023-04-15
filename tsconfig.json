@@ -35,6 +35,8 @@
     "baseUrl": "./src" /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
       "@landing/*": ["Components/Landing/*"],
+      "@auth/*": ["Components/Auth/*"],
+      "@student/*": ["Components/Student/*"],
       "@application/*": ["Components/Application/*"],
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
