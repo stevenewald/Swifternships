@@ -4,6 +4,7 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@landing': path.resolve(__dirname, 'src/Components/Landing'),
+      '@application': path.resolve(__dirname, 'src/Components/Application'),
     },
   },
 };

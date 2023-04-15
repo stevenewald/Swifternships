@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Hero from "@landing/Hero";
+// import Hero from "@landing/Hero";
+import Application from "@application/Application"
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/functions";
@@ -53,7 +54,7 @@ root.render(
         path="/"
         element={
           <div>
-            <Hero />
+            <Application />
           </div>
         }
       ></Route>
