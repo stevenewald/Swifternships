@@ -9,7 +9,7 @@ export default function Login(props: { user: any }) {
   const dbRef = ref(database);
   function completeLogin(email: string, uid: string) {
     if (window.location.href.includes("student")) {
-      if(!email.includes("northwestern.edu")) {
+      if (!email.includes("northwestern.edu")) {
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -50,7 +50,7 @@ export default function Login(props: { user: any }) {
     }
   }
   useEffect(() => {
-    if(props.user==null) {
+    if (props.user == null) {
       return;
     }
     completeLogin(props.user.email, props.user.uid);
@@ -66,7 +66,7 @@ export default function Login(props: { user: any }) {
               alt="Swifternships"
             />
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
-              Welcome to Swifternships!
+              Welcome to Swifternships
             </h2>
             <p className="mt-2 text-sm text-gray-600 font-medium">
               Access Your Micro-Internship Opportunities - Login Now!
@@ -175,12 +175,42 @@ export default function Login(props: { user: any }) {
 
             <div className="mt-6">
               <div>
-                <a
-                  href="/login"
+                <button
+                  onClick={() => {
+                    firebase
+                      .auth()
+                      .signInWithPopup(provider)
+                      .then((data: any) => {
+                        console.log("Done with sign in");
+                        completeLogin(data.user.email, data.user.uid);
+                      })
+                      .catch((error: any) => {
+                        const errorMessage = error.message;
+                        if (String(errorMessage).includes("popup-closed")) {
+                          console.log(
+                            "Tell steve that there's an issue with the popup. Reverting to redirect fallback..."
+                          );
+                          window.location.href = "/login";
+                        } else if (
+                          String(errorMessage).includes("PERMISSION")
+                        ) {
+                          firebase.auth().signOut();
+                          Swal.fire({
+                            title: "Invalid email",
+                            icon: "error",
+                            text: "You must be a Northwestern student to log in. (permission)",
+                          }).then(() => {
+                            window.location.reload();
+                          });
+                        } else {
+                          alert(String(errorMessage));
+                        }
+                      });
+                  }}
                   className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Sign in
-                </a>
+                </button>
               </div>
             </div>
           </div>
