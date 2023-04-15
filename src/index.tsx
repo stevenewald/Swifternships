@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Application from "@application/Application"
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/functions";
@@ -18,6 +17,8 @@ import Basic from "@student/Basic";
 import CheckLogin from "@auth/CheckLogin";
 import Login from "@auth/Login";
 import StudentSignup from "@student/StudentSignup";
+import Application from "@application/Application"
+import LoadingPage from "@loading/LoadingPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -86,6 +87,7 @@ function Full() {
           <Route path="/login" element={<Login user={user}/>}></Route>
           <Route path="/student_signup" element={<StudentSignup user={user} />}></Route>
           <Route path="/application" element={<Application/>}></Route>
+          <Route path="/loading" element={<LoadingPage/>}></Route>
         </Routes>
       </Router>
     </FirebaseContext.Provider>
