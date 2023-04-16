@@ -123,6 +123,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
                       createdAt={listing.createdAt}
                       companyLogoURL={listing.companyLogoURL}
                       alreadyApplied = {myAppsUIDS.includes(listing.jobId)}
+                      companyEmail = {listing.companyEmail}
                     />
                   </>
                 ))}

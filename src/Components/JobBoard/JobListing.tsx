@@ -20,6 +20,7 @@ export default function JobListing(props: {
   jobId: string;
   employerId: string;
   alreadyApplied: boolean;
+  companyEmail: string;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -38,6 +39,7 @@ export default function JobListing(props: {
         jobId={props.jobId}
         employerId={props.employerId}
         alreadyApplied={props.alreadyApplied}
+        companyEmail={props.companyEmail}
       />
       <div onClick={() => setOpen(true)} className="hover:cursor-pointer">
         <div className="max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-md">
@@ -91,6 +93,7 @@ const JobListingModal = (props: {
   jobId: string;
   employerId: string;
   alreadyApplied:boolean;
+  companyEmail:string;
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -138,6 +141,7 @@ const JobListingModal = (props: {
                   jobId={props.jobId}
                   employerId={props.employerId}
                   alreadyApplied={props.alreadyApplied}
+                  companyEmail={props.companyEmail}
                 />
                 {/* </div> */}
               </Dialog.Panel>
@@ -161,8 +165,10 @@ const JobListingModelContent = (props: {
   jobId: string;
   employerId: string;
   alreadyApplied: boolean;
+  companyEmail: string;
 }) => {
   const database = useContext(FirebaseContext).database;
+  const firebase = useContext(FirebaseContext).firebase;
   return (
     <div className="overflow-hidden bg-white shadow-md">
       <img
@@ -219,6 +225,10 @@ const JobListingModelContent = (props: {
                 },
               }).then((res) => {
                 if (res.isConfirmed) {
+                  firebase.functions().httpsCallable("createApplicationEmail")({
+                    email: props.companyEmail,
+                    jobTitle: props.projectTitle,
+                  });
                   update(
                     ref(
                       database,
