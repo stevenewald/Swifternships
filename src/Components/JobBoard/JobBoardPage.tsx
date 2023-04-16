@@ -6,6 +6,7 @@ import { useContext } from "react";
 export default function JobBoardPage(props: { currTab: number }) {
   const database = useContext(FirebaseContext).database;
   const dbRef = ref(database);
+
   return (
     <>
       <main>
@@ -14,29 +15,29 @@ export default function JobBoardPage(props: { currTab: number }) {
             {/* Main area */}
             {props.currTab === 0 && (
               <>
-                {get(child(dbRef, "employers/")).then(
-                  (employerSnapshot: any) => (
-                    <>
-                      {get(child(dbRef, "jobpostings/")).then(
-                        (jobpostingSnapshot: any) => (
-                          <JobListing
-                            companyName={employerSnapshot.companyName}
-                            projectTitle={jobpostingSnapshot.projectTitle}
-                            projectDescription={
-                              jobpostingSnapshot.projectDescription
-                            }
-                            jobLocation={jobpostingSnapshot.jobLocation}
-                            projectTimeline={jobpostingSnapshot.projectTimeline}
-                            companyDescription={
-                              employerSnapshot.companyDescription
-                            }
-                            createdAt={jobpostingSnapshot.createdAt}
-                          />
-                        )
-                      )}
-                    </>
-                  )
-                )}
+                {get(child(dbRef, "employers/")).then((employerSnapshot) => (
+                  <>
+                    {get(child(dbRef, "jobpostings/")).then(
+                      (jobpostingSnapshot: any) => (
+                        <JobListing
+                          companyName={employerSnapshot.val().companyName}
+                          projectTitle={jobpostingSnapshot.val().projectTitle}
+                          projectDescription={
+                            jobpostingSnapshot.val().projectDescription
+                          }
+                          jobLocation={jobpostingSnapshot.val().jobLocation}
+                          projectTimeline={
+                            jobpostingSnapshot.val().projectTimeline
+                          }
+                          companyDescription={
+                            employerSnapshot.val().companyDescription
+                          }
+                          createdAt={jobpostingSnapshot.val().createdAt}
+                        />
+                      )
+                    )}
+                  </>
+                ))}
               </>
             )}
           </div>

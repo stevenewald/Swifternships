@@ -1,4 +1,4 @@
-import JobListing from "Components/JobBoard/JobListing";
+// import JobListing from "Components/JobBoard/JobListing";
 
 export default function MyListingsPage() {
   return (
@@ -7,7 +7,7 @@ export default function MyListingsPage() {
         <div>
           <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
             {/* Main area */}
-            <JobListing />
+            {/* <JobListing /> */}
           </div>
         </div>
       </main>
