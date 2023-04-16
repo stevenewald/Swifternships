@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Outlet } from "react-router-dom";
-import { FolderIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { FolderIcon, BriefcaseIcon, CogIcon, FolderPlusIcon } from "@heroicons/react/24/outline";
 import { UserIcon } from "@heroicons/react/20/solid";
 import Logo from "@images/icon.png";
 
@@ -11,29 +11,24 @@ function classNames(...classes: any) {
 }
 
 const studentNavigation = [
-  { name: "Jobs", icon: HomeIcon, id: 0 },
-  {
-    name: "Profile Settings",
-
-    icon: UsersIcon,
-    id: 1,
-  },
+  { name: "Jobs", icon: BriefcaseIcon, id: 0 },
   {
     name: "Applications",
 
     icon: FolderIcon,
     id: 2,
   },
+  {
+    name: "Profile Settings",
+
+    icon: CogIcon,
+    id: 1,
+  },
 ];
 
 const businessNavigation = [
-  { name: "My Listings", id:3,icon: HomeIcon },
-  { name: "New Project", id:4,icon: HomeIcon },
-  {
-    name: "Profile Settings",
-    id:5,
-    icon: UsersIcon,
-  },
+  { name: "My Listings", id:3,icon: BriefcaseIcon },
+  { name: "New Project", id:4,icon: FolderPlusIcon },
 ];
 
 export default function Sidebar(props: {

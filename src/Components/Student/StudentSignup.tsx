@@ -184,7 +184,7 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
         </div>
       </div>}
 
-      <div className="mx-auto max-w-7xl pt-24 pb-16 sm:px-6 sm:pt-32 sm:pt-20 lg:px-8">
+      <div className={"mx-auto max-w-7xl pt-24 pb-16 sm:px-6 sm:pt-32 sm:pt-20 lg:px-8"}>
         <div className="space-y-10 divide-y divide-gray-900/10">
           <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
             <div className="px-4 sm:px-0">
