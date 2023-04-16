@@ -7,6 +7,7 @@ module.exports = {
       '@auth': path.resolve(__dirname, 'src/Components/Auth'),
       '@student' : path.resolve(__dirname, 'src/Components/Student'),
       '@images' : path.resolve(__dirname, 'src/Images'),
+      '@employer' : path.resolve(__dirname, 'src/Components/Employer'),
     },
   },
 };
