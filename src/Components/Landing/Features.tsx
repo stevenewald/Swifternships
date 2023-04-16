@@ -61,7 +61,7 @@ export default function Features() {
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Local businesses and startups are recruiting college students
             for short-term projects you can complete during your studies - no
-            experience necessary
+            experience necessary!
           </p>
         </div>
       </div>
