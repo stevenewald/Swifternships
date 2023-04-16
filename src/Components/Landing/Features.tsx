@@ -6,7 +6,7 @@ import {
   CheckCircleIcon,
   BriefcaseIcon,
 } from "@heroicons/react/20/solid";
-import Demo from "@images/demo.png";
+import Demo from "@images/example2.png";
 
 const features = [
   {
@@ -71,8 +71,8 @@ export default function Features() {
             src={Demo}
             alt="App screenshot"
             className="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
-            width={2946}
-            height={974}
+            width={2542}
+            height={1238}
           />
           <div className="relative" aria-hidden="true">
             <div className="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]" />

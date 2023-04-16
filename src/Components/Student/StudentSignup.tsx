@@ -31,7 +31,8 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
         gpaRef.current.value = student.gpa;
         majorRef.current.value = student.major;
         aboutRef.current.value = student.about;
-        githubRef.current.value = student.github;
+        linkedinRef.current.value = student.linkedin || "";
+        githubRef.current.value = student.github || "";
         schoolRef.current.value = student.school;
       });
     }
@@ -498,7 +499,7 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
                           id="linkedin"
                           ref={linkedinRef}
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                          placeholder="stevenewald"
+                          placeholder="username"
                         />
                       </div>
                     </div>
@@ -524,7 +525,7 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
                           id="github"
                           ref={githubRef}
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                          placeholder="stevenewald"
+                          placeholder="username"
                         />
                       </div>
                     </div>
