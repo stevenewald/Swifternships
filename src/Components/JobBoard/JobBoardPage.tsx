@@ -5,6 +5,7 @@ import { FirebaseContext } from "@auth/FirebaseContext";
 import { useContext, useEffect, useState } from "react";
 import ManageApplications from "@student/ManageApps/ManageApplications";
 import NewListing from "@employer/NewListing";
+import MyListings from "@employer/MyListings/MyJobListings";
 
 export default function JobBoardPage(props: { currTab: number; user: any }) {
   const database = useContext(FirebaseContext).database;
@@ -130,6 +131,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
                 <ManageApplications applications={myApplications} />
               </>
             )}
+            {props.currTab === 3 && <MyListings user={props.user}/>}
             {props.currTab === 4 && <NewListing user={props.user}/>}
           </div>
         </div>
