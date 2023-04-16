@@ -5,19 +5,23 @@ import "firebase/compat/auth";
 import "firebase/compat/functions";
 import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 import { getStorage, connectStorageEmulator } from "firebase/storage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {ref, child, get} from "firebase/database";
 
 import Hero from "@landing/Hero";
 import Features from "@landing/Features";
 import Team from "@landing/Team";
 import FAQs from "@landing/FAQs";
 import { FirebaseContext } from "@auth/FirebaseContext";
-import Basic from "@student/Basic";
 import CheckLogin from "@auth/CheckLogin";
 import Login from "@auth/Login";
 import StudentSignup from "@student/StudentSignup";
 import Stats from "@landing/Stats";
+
+import MyListingsPage from "Components/MyListings/MyListingsPage";
+import Sidebar from "Components/Sidebar";
+import JobBoardPage from "Components/JobBoard/JobBoardPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -57,8 +61,21 @@ if (window.location.hostname === "localhost") {
   database = getDatabase(app);
 }
 
+
 function Full() {
   const [user, setUser] = useState(null);
+  const [studentUser, setStudentUser] = useState(null);
+  useEffect(() => {
+    if (user) {
+      get(child(ref(database), "students/" + user.uid)).then((snapshot) => {
+        if (snapshot.exists()) {
+          setStudentUser(snapshot.val());
+        } else {
+          console.log("No data available");
+        }
+      })
+    }
+  }, [user])
   return (
     <FirebaseContext.Provider value={{ firebase, database, storage, provider }}>
       <Router>
@@ -75,15 +92,6 @@ function Full() {
               </div>
             }
           ></Route>
-          <Route
-            path="/student"
-            element={
-              <>
-                <CheckLogin setUser={setUser} student={true}></CheckLogin>
-                <Basic user={user} />
-              </>
-            }
-          ></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route
             path="/student_signup"
@@ -94,6 +102,30 @@ function Full() {
               </>
             }
           ></Route>
+          <Route element={<Sidebar userType={"student"} studentUser={studentUser}/>}>
+            <Route
+              path="/student"
+              element={
+                <div>
+                  <CheckLogin setUser={setUser} student={true}></CheckLogin>
+                  <JobBoardPage />
+                </div>
+              }
+            ></Route>
+            <Route
+              path="/mylistings"
+              element={
+                <div>
+                  <MyListingsPage />
+                </div>
+              }
+            ></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route
+              path="/student_signup"
+              element={<StudentSignup user={user} />}
+            ></Route>
+          </Route>
         </Routes>
       </Router>
     </FirebaseContext.Provider>
