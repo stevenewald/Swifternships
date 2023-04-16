@@ -35,15 +35,15 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
                 jobId: jobId,
                 employerId: application.employerId,
                 whyThisProject: application.whyThisProject,
-                companyName: job.companyName,
-                companyEmail: job.companyEmail,
-                projectTitle: job.projectTitle,
-                projectDescription: job.projectDescription,
-                jobLocation: job.jobLocation,
-                projectTimeline: job.jobTimeline,
-                companyDescription: job.companyDescription,
-                createdAt: job.createdAt,
-                companyLogoURL: job.companyLogoURL,
+                companyName: job?.companyName,
+                companyEmail: job?.companyEmail,
+                projectTitle: job?.projectTitle,
+                projectDescription: job?.projectDescription,
+                jobLocation: job?.jobLocation,
+                projectTimeline: job?.jobTimeline,
+                companyDescription: job?.companyDescription,
+                createdAt: job?.createdAt,
+                companyLogoURL: job?.companyLogoURL,
               };
               setmyAppsUIDS(myApps);
               return applicationWithJob;
@@ -96,8 +96,10 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
   }, [props.user]);
 
   useEffect(() => {
-    getMyApplications(listings);
-  }, [listings]);
+    if(props.user) {
+      getMyApplications(listings);
+    }
+  }, [listings, props.user]);
   return (
     <>
       <main>
@@ -109,7 +111,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
                 {listings.map((listing: any) => (
                   <>
                     <JobListing
-                    currUid={props.user.uid}
+                    currUid={props?.user?.uid}
                       jobId={listing.jobId}
                       employerId={listing.employerId}
                       companyName={listing.companyName}

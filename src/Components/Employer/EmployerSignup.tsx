@@ -582,7 +582,7 @@ export default function Employersignup(props: { user: any }) {
                                 const storageRef = sRef(
                                   storage,
                                   "logos/" +
-                                    props?.user.uid +
+                                    props?.user?.uid +
                                     fileName.substring(
                                       fileName.indexOf("."),
                                       fileName.length
@@ -598,7 +598,7 @@ export default function Employersignup(props: { user: any }) {
                                         update(
                                           ref(
                                             database,
-                                            "employers/" + props.user.uid
+                                            "employers/" + props.user?.uid
                                           ),
                                           {
                                             logo_link: downloadURL,
