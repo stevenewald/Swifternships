@@ -230,15 +230,23 @@ const JobListingModelContent = (props: {
                 },
               }).then((res) => {
                 if (res.isConfirmed) {
-                  firebase.functions().httpsCallable("createApplicationEmail")({
-                    email: props.companyEmail,
-                    jobTitle: props.projectTitle,
-                  });
-                  firebase.functions().httpsCallable("sendApplicationText")({
-                    phone: props.currUserPhone,
-                    jobTitle: props.projectTitle,
-                    companyName: props.companyName,
-                  })
+                  try {
+                    firebase.functions().httpsCallable("createApplicationEmail")({
+                      email: props.companyEmail,
+                      jobTitle: props.projectTitle,
+                    });
+                  } catch {
+                    
+                  }
+                  try {
+                    firebase.functions().httpsCallable("sendApplicationText")({
+                      phone: props.currUserPhone,
+                      jobTitle: props.projectTitle,
+                      companyName: props.companyName,
+                    })
+                  } catch {
+                    
+                  }
                   update(
                     ref(
                       database,

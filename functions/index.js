@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
   databaseURL: "https://swifternships-default-rtdb.firebaseio.com/",
-}); 
+});
 
 const ACC_SID = functions.config().twilio.acc_sid2;
 const AUTH_TOKEN = functions.config().twilio.auth_token2;
