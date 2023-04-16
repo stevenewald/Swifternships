@@ -46,12 +46,12 @@ const ApplicationRow = (props: {
 
   return (
     <>
+      <ManageAppsModal
+        open={open}
+        setOpen={setOpen}
+        application={props.application}
+      />
       <tr onClick={() => setOpen(true)} className="hover:cursor-pointer">
-        <ManageAppsModal
-          open={open}
-          setOpen={setOpen}
-          application={props.application}
-        />
         <td
           onClick={() => {
             setOpen(true);
@@ -63,7 +63,7 @@ const ApplicationRow = (props: {
             <div className="flex items-center gap-x-2">
               <img
                 className="object-cover w-10 h-10 rounded-full"
-                src="https://grantapp.dev/static/media/Logo.5ef32d5fdb78cd3ece852924568aea39.svg"
+                src={props.application.companyLogoURL}
                 alt=""
               />
               <div>

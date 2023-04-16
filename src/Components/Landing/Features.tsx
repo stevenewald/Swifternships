@@ -6,6 +6,7 @@ import {
   CheckCircleIcon,
   BriefcaseIcon,
 } from "@heroicons/react/20/solid";
+import Demo from "@images/demo.png";
 
 const features = [
   {
@@ -67,11 +68,11 @@ export default function Features() {
       <div className="relative overflow-hidden pt-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <img
-            src="https://tailwindui.com/img/component-images/project-app-screenshot.png"
+            src={Demo}
             alt="App screenshot"
             className="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
-            width={2432}
-            height={1442}
+            width={2946}
+            height={974}
           />
           <div className="relative" aria-hidden="true">
             <div className="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]" />

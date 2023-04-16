@@ -1,7 +1,7 @@
 const stats = [
-  { id: 1, name: "Partnered businesses", value: "14" },
-  { id: 2, name: "Projects posted", value: "18" },
-  { id: 3, name: "Business to platform conversion rate", value: "77%" },
+  { id: 1, name: "Partnered businesses", value: "12" },
+  { id: 2, name: "Projects posted", value: "8" },
+  { id: 3, name: "Business to platform conversion rate", value: "92%" },
 ];
 
 export default function Stats() {
