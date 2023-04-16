@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { AcademicCapIcon } from "@heroicons/react/20/solid";
-import Logo from "@images/logo.png";
+import Logo from "@images/icon.png";
 
 const navigation = [
   { name: "Features", href: "#features" },
   { name: "Stats", href: "#stats" },
-  { name: "Team", href: "#team" },
   { name: "FAQs", href: "#faq" },
+  { name: "Team", href: "#team" },
 ];
 
 export default function Hero() {
@@ -25,7 +25,7 @@ export default function Hero() {
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Swifternships</span>
               <img
-                className="h-8 w-auto"
+                className="h-10 w-auto"
                 src={Logo}
                 alt="Swifternships"
               />

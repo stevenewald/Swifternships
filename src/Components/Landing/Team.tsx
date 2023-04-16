@@ -1,4 +1,5 @@
 import Andrew from "@images/andrew.jpg";
+import Justin from "@images/justin.jpg";
 const people = [
   {
     name: 'Steve Ewald',
@@ -15,11 +16,11 @@ const people = [
     bio: 'From my time at KTP (pre-professional organization), I\'ve found that getting the first internship is often the hardest part of the job search. I\'m excited to help students navigate the process and land their first internship.',
   },
   {
-    name: 'Steve Ewald',
+    name: 'Justin Ewald Dong',
     role: 'Computer Science in McCormick',
     imageUrl:
-      'https://media.licdn.com/dms/image/D5603AQFZEpi4KfIkdA/profile-displayphoto-shrink_400_400/0/1675544376371?e=1686787200&v=beta&t=bkpwcMnVxmN92e1J0IEvypqqFUVFFKa18okJr79UW7U',
-    bio: 'From my time at KTP (pre-professional organization), I\'ve found that getting the first internship is often the hardest part of the job search. I\'m excited to help students navigate the process and land their first internship.',
+      Justin,
+    bio: 'It\'s thrilling to exploit startups and local businesses by conveniently tapping into cheap college labor. I\'m eager to create more opportunities for students to overwork themselves through "experiential learning."',
   },
   {
     name: 'Steve Ewald',

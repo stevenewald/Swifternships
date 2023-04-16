@@ -1,44 +1,83 @@
+import { Disclosure } from "@headlessui/react";
+import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 const faqs = [
-    {
-      question: 'Do I need experience?',
-      answer:
-        'Nope! We welcome students of all experience levels. Companies join Swifternships with the understanding that applying students will be predominately first-time applicants.',
-    },
-    {
-        question: 'What kind of micro-internships are available?',
-        answer:
-          'Our current companies offer internships in _, _, and _. We\re in the process of recruiting _ and _ companies, so check back soon for more listings!.',
-      },
-  ]
-  
-  export default function FAQs() {
-    return (
-      <div className="bg-white" id="faq">
-        <div className="mx-auto max-w-7xl px-6 py-24 sm:pt-32 lg:px-8 lg:py-40">
-          <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-5">
-              <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
-              <p className="mt-4 text-base leading-7 text-gray-600">
-                Can’t find the answer you’re looking for? Reach out to our{' '}
-                <a href="mailto:help@swifternships.tech" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                  customer support
-                </a>{' '}
-                team.
-              </p>
-            </div>
-            <div className="mt-10 lg:col-span-7 lg:mt-0">
-              <dl className="space-y-10">
-                {faqs.map((faq) => (
-                  <div key={faq.question}>
-                    <dt className="text-base font-semibold leading-7 text-gray-900">{faq.question}</dt>
-                    <dd className="mt-2 text-base leading-7 text-gray-600">{faq.answer}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
+  {
+    question: "What is Swifternships?",
+    answer:
+      "Swifternships is a unique service that connects Northwestern students with local businesses and startups, providing them with short-term, unpaid internship opportunities. The platform aims to provide students with meaningful professional experience and to help businesses and startups find talented students to help them grow.",
+  },
+  {
+    question: "Why should I join a micro-internship?",
+    answer:
+      "Micro-internships are a great way to gain practical work experience and enhance your resume. They are also a great way to explore different career paths and industries, and to build your professional network.",
+  },
+  {
+    question: "Who is eligible to apply for micro-internships?",
+    answer:
+      "All currently enrolled Northwestern students, regardless of their major, are eligible to apply for micro-internships through the platform.",
+  },
+  {
+    question: "How long do micro-internships last?",
+    answer:
+      "Micro-internships typically last from one week to one month, depending on the project requirements and the student's availability.",
+  },
+  {
+    question: "How competitive are micro-internships?",
+    answer:
+      "The competitiveness of each micro-internship varies depending on the number of applicants and the specific skills required for the position. However, the platform aims to provide ample opportunities for students to gain professional experience.",
+  },
+  {
+    question: "How can I make the most of my micro-internship experience?",
+    answer:
+      "To maximize your micro-internship experience, be proactive in asking questions, seeking feedback, and taking on new tasks. Communicate openly with your supervisor and co-workers to build relationships and develop your professional network.",
+  },
+];
+
+export default function FAQs() {
+  return (
+    <div className="bg-white" id="faq">
+      <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+        <div className="mx-auto max-w-4xl divide-y divide-gray-900/10">
+          <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">
+            Frequently asked questions
+          </h2>
+          <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">
+            {faqs.map((faq) => (
+              <Disclosure as="div" key={faq.question} className="pt-6">
+                {({ open }) => (
+                  <>
+                    <dt>
+                      <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-900">
+                        <span className="text-base font-semibold leading-7">
+                          {faq.question}
+                        </span>
+                        <span className="ml-6 flex h-7 items-center">
+                          {open ? (
+                            <MinusSmallIcon
+                              className="h-6 w-6"
+                              aria-hidden="true"
+                            />
+                          ) : (
+                            <PlusSmallIcon
+                              className="h-6 w-6"
+                              aria-hidden="true"
+                            />
+                          )}
+                        </span>
+                      </Disclosure.Button>
+                    </dt>
+                    <Disclosure.Panel as="dd" className="mt-2 pr-12">
+                      <p className="text-base leading-7 text-gray-600">
+                        {faq.answer}
+                      </p>
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+            ))}
+          </dl>
         </div>
       </div>
-    )
-  }
-  
+    </div>
+  );
+}

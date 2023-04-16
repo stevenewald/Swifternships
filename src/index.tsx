@@ -70,8 +70,8 @@ function Full() {
                 <Hero />
                 <Features />
                 <Stats />
-                <Team />
                 <FAQs />
+                <Team />
               </div>
             }
           ></Route>
@@ -80,12 +80,20 @@ function Full() {
             element={
               <>
                 <CheckLogin setUser={setUser} student={true}></CheckLogin>
-                <Basic user={user}/>
+                <Basic user={user} />
               </>
             }
           ></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/student_signup" element={<><CheckLogin setUser={setUser} student={true}></CheckLogin><StudentSignup user={user} /></>}></Route>
+          <Route
+            path="/student_signup"
+            element={
+              <>
+                <CheckLogin setUser={setUser} student={true}></CheckLogin>
+                <StudentSignup user={user} />
+              </>
+            }
+          ></Route>
         </Routes>
       </Router>
     </FirebaseContext.Provider>
