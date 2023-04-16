@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 import { ref, child, get } from "firebase/database";
 import Logo from "@images/logo.png";
+import Deering from "@images/deering.jpg";
 export default function Login() {
   const firebase = useContext(FirebaseContext).firebase;
   const database = useContext(FirebaseContext).database;
@@ -221,7 +222,7 @@ export default function Login() {
       <div className="relative hidden w-0 flex-1 lg:block">
         <img
           className="absolute inset-0 h-screen w-full object-cover"
-          src={"https://www.northwestern.edu/brand/images/deering.jpg"}
+          src={Deering}
           alt=""
         />
       </div>

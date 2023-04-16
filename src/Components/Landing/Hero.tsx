@@ -5,10 +5,10 @@ import { AcademicCapIcon } from "@heroicons/react/20/solid";
 import Logo from "@images/logo.png";
 
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "About", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Features", href: "#features" },
+  { name: "Stats", href: "#stats" },
+  { name: "Team", href: "#team" },
+  { name: "FAQs", href: "#faq" },
 ];
 
 export default function Hero() {

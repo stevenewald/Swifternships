@@ -1,3 +1,4 @@
+import Andrew from "@images/andrew.jpg";
 const people = [
   {
     name: 'Steve Ewald',
@@ -7,10 +8,10 @@ const people = [
     bio: 'From my time at KTP (pre-professional organization), I\'ve found that getting the first internship is often the hardest part of the job search. I\'m excited to help students navigate the process and land their first internship.',
   },
   {
-    name: 'Steve Ewald',
-    role: 'Computer Science in McCormick',
+    name: 'Andrew Pulver',
+    role: 'Voice and Opera in Bienen',
     imageUrl:
-      'https://media.licdn.com/dms/image/D5603AQFZEpi4KfIkdA/profile-displayphoto-shrink_400_400/0/1675544376371?e=1686787200&v=beta&t=bkpwcMnVxmN92e1J0IEvypqqFUVFFKa18okJr79UW7U',
+      Andrew,
     bio: 'From my time at KTP (pre-professional organization), I\'ve found that getting the first internship is often the hardest part of the job search. I\'m excited to help students navigate the process and land their first internship.',
   },
   {
@@ -31,7 +32,7 @@ const people = [
 
 export default function Team() {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-white py-24 sm:py-32" id="team">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet the team</h2>
