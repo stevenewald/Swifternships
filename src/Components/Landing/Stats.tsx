@@ -15,7 +15,7 @@ export default function Stats() {
               className="mx-auto flex max-w-xs flex-col gap-y-4"
             >
               <dt className="text-base leading-7 text-gray-600">{stat.name}</dt>
-              <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+              <dd className="order-first text-3xl font-semibold tracking-tight text-indigo-600 sm:text-5xl">
                 {stat.value}
               </dd>
             </div>
