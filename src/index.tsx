@@ -22,6 +22,7 @@ import Stats from "@landing/Stats";
 import MyListingsPage from "Components/MyListings/MyListingsPage";
 import Sidebar from "Components/Sidebar";
 import JobBoardPage from "Components/JobBoard/JobBoardPage";
+import EmployerSignup from "@employer/EmployerSignup";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -100,6 +101,15 @@ function Full() {
               <>
                 <CheckLogin setUser={setUser} student={true}></CheckLogin>
                 <StudentSignup user={user} />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/employer_signup"
+            element={
+              <>
+                <CheckLogin setUser={setUser} student={false}></CheckLogin>
+                <EmployerSignup user={user} />
               </>
             }
           ></Route>
