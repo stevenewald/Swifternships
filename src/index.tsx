@@ -1,17 +1,24 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Hero from "@landing/Hero";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/functions";
 import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 import { getStorage, connectStorageEmulator } from "firebase/storage";
-
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import JobBoardPage from "Components/JobBoard/JobBoardPage";
+import { FirebaseContext } from "@auth/FirebaseContext";
+import Hero from "@landing/Hero";
+import Features from "@landing/Features";
+import Team from "@landing/Team";
+import FAQs from "@landing/FAQs";
 import MyListingsPage from "Components/MyListings/MyListingsPage";
-
+import Login from "@auth/Login";
+import StudentSignup from "@student/StudentSignup";
+import Application from "@application/Application";
+import LoadingPage from "@loading/LoadingPage";
 import Sidebar from "Components/Sidebar";
+import JobBoardPage from "Components/JobBoard/JobBoardPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,7 +26,7 @@ const root = ReactDOM.createRoot(
 
 const firebaseConfig = {
   apiKey: "AIzaSyA4jyxuftXidnBGhPBQ-XWMWvpTJeMmsfY",
-  authDomain: "swifternships.firebaseapp.com",
+  authDomain: "auth.swifternships.tech",
   databaseURL: "https://swifternships-default-rtdb.firebaseio.com",
   projectId: "swifternships",
   storageBucket: "swifternships.appspot.com",
@@ -51,38 +58,53 @@ if (window.location.hostname === "localhost") {
   database = getDatabase(app);
 }
 
-root.render(
-  <>
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <Hero />
-            </div>
-          }
-        ></Route>
+function Full() {
+  const [user] = useState(null);
 
-        <Route element={<Sidebar userType={"student"} />}>
+  return (
+    <FirebaseContext.Provider value={{ firebase, database, storage, provider }}>
+      <Router>
+        <Routes>
           <Route
-            path="/jobs"
+            path="/"
             element={
               <div>
-                <JobBoardPage />
+                <Hero />
+                <Features />
+                <Team />
+                <FAQs />
               </div>
             }
           ></Route>
-          <Route
-            path="/mylistings"
-            element={
-              <div>
-                <MyListingsPage />
-              </div>
-            }
-          ></Route>
-        </Route>
-      </Routes>
-    </Router>
-  </>
-);
+          <Route element={<Sidebar userType={"student"} />}>
+            <Route
+              path="/jobs"
+              element={
+                <div>
+                  <JobBoardPage />
+                </div>
+              }
+            ></Route>
+            <Route
+              path="/mylistings"
+              element={
+                <div>
+                  <MyListingsPage />
+                </div>
+              }
+            ></Route>
+            <Route path="/login" element={<Login user={user} />}></Route>
+            <Route
+              path="/student_signup"
+              element={<StudentSignup user={user} />}
+            ></Route>
+            <Route path="/application" element={<Application />}></Route>
+            <Route path="/loading" element={<LoadingPage />}></Route>
+          </Route>
+        </Routes>
+      </Router>
+    </FirebaseContext.Provider>
+  );
+}
+
+root.render(<Full />);
