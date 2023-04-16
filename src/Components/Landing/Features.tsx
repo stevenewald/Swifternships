@@ -12,7 +12,7 @@ const features = [
   {
     name: "No experience required",
     description:
-      "Our platform is designed to accommodate students from diverse backgrounds, allowing you to apply for micro-internships without any prior professional experience.",
+      "Our platform is designed to accommodate students from diverse backgrounds, allowing you to apply for microinternships without any prior professional experience.",
     icon: CheckCircleIcon,
   },
   {
@@ -24,7 +24,7 @@ const features = [
   {
     name: "Flexible scheduling",
     description:
-      "Micro-internships offer short-term commitments, enabling you to balance your academic responsibilities while still gaining valuable professional exposure.",
+      "Microinternships offer short-term commitments, enabling you to balance your academic responsibilities while still gaining valuable professional exposure.",
     icon: CalendarIcon,
   },
   {
@@ -59,7 +59,7 @@ export default function Features() {
             No experience? No problem.
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Local businesses and startups are recruiting Northwestern students
+            Local businesses and startups are recruiting college students
             for short-term projects you can complete during your studies - no
             experience necessary
           </p>

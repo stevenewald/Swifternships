@@ -4,32 +4,32 @@ const faqs = [
   {
     question: "What is Swifternships?",
     answer:
-      "Swifternships is a unique service that connects Northwestern students with local businesses and startups, providing them with short-term, unpaid internship opportunities. The platform aims to provide students with meaningful professional experience and to help businesses and startups find talented students to help them grow.",
+      "Swifternships is a unique service that connects college students with local businesses and startups, providing them with short-term, unpaid internship opportunities. The platform aims to provide students with meaningful professional experience and to help businesses and startups find talented students to help them grow.",
   },
   {
-    question: "Why should I join a micro-internship?",
+    question: "Why should I join a microinternship?",
     answer:
-      "Micro-internships are a great way to gain practical work experience and enhance your resume. They are also a great way to explore different career paths and industries, and to build your professional network.",
+      "Microinternships are a great way to gain practical work experience and enhance your resume. They are also a great way to explore different career paths and industries, and to build your professional network.",
   },
   {
-    question: "Who is eligible to apply for micro-internships?",
+    question: "Who is eligible to apply for microinternships?",
     answer:
-      "All currently enrolled Northwestern students, regardless of their major, are eligible to apply for micro-internships through the platform.",
+      "All currently enrolled college students, regardless of their major, are eligible to apply for microinternships through the platform.",
   },
   {
-    question: "How long do micro-internships last?",
+    question: "How long do microinternships last?",
     answer:
-      "Micro-internships typically last from one week to one month, depending on the project requirements and the student's availability.",
+      "Microinternships typically last from one week to one month, depending on the project requirements and the student's availability.",
   },
   {
-    question: "How competitive are micro-internships?",
+    question: "How competitive are microinternships?",
     answer:
-      "The competitiveness of each micro-internship varies depending on the number of applicants and the specific skills required for the position. However, the platform aims to provide ample opportunities for students to gain professional experience.",
+      "The competitiveness of each microinternship varies depending on the number of applicants and the specific skills required for the position. However, the platform aims to provide ample opportunities for students to gain professional experience.",
   },
   {
-    question: "How can I make the most of my micro-internship experience?",
+    question: "How can I make the most of my microinternship experience?",
     answer:
-      "To maximize your micro-internship experience, be proactive in asking questions, seeking feedback, and taking on new tasks. Communicate openly with your supervisor and co-workers to build relationships and develop your professional network.",
+      "To maximize your microinternship experience, be proactive in asking questions, seeking feedback, and taking on new tasks. Communicate openly with your supervisor and co-workers to build relationships and develop your professional network.",
   },
 ];
 

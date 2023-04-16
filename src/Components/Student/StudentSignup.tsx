@@ -671,7 +671,7 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
                           </label>
                           <p className="text-gray-500">
                             Get weekly emails containing recommended
-                            micro-internships to apply for.
+                            microinternships to apply for.
                           </p>
                         </div>
                       </div>
