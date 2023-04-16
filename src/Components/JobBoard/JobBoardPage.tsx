@@ -11,6 +11,48 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
   const database = useContext(FirebaseContext).database;
   const dbRef = ref(database);
   const [listings, setListings]: any = useState([]);
+  const [myApplications, setMyApplications]: any = useState([]);
+  const [myAppsUIDS, setmyAppsUIDS]: any = useState([]);
+  async function getMyApplications(loadedListings: any[]) {
+    await get(child(dbRef, `students/${props.user.uid}/applications`)).then(
+      (studentApplicationsSnapshot) => {
+        if (!studentApplicationsSnapshot.exists()) {
+          return;
+        }
+        var myApps:any = [];
+
+        setMyApplications(
+          Object.keys(studentApplicationsSnapshot.val()).map(
+            (jobId: string) => {
+              let application = studentApplicationsSnapshot.val()[jobId];
+              myApps.push(jobId);
+
+              let job = loadedListings.find(
+                (listing) => listing.jobId === jobId
+              );
+
+              let applicationWithJob = {
+                jobId: jobId,
+                employerId: application.employerId,
+                whyThisProject: application.whyThisProject,
+                companyName: job.companyName,
+                companyEmail: job.companyEmail,
+                projectTitle: job.projectTitle,
+                projectDescription: job.projectDescription,
+                jobLocation: job.jobLocation,
+                projectTimeline: job.jobTimeline,
+                companyDescription: job.companyDescription,
+                createdAt: job.createdAt,
+                companyLogoURL: job.companyLogoURL,
+              };
+              setmyAppsUIDS(myApps);
+              return applicationWithJob;
+            }
+          )
+        );
+      }
+    );
+  }
   async function getListings() {
     const newListings: any = [];
     await get(child(dbRef, "employers")).then((employerSnapshot) =>
@@ -42,46 +84,6 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
     );
     setListings(newListings.flat());
     return newListings.flat();
-  }
-
-  const [myApplications, setMyApplications]: any = useState([]);
-  async function getMyApplications(loadedListings: any[]) {
-    await get(child(dbRef, `students/${props.user.uid}/applications`)).then(
-      (studentApplicationsSnapshot) => {
-        if (!studentApplicationsSnapshot.exists()) {
-          return;
-        }
-
-        setMyApplications(
-          Object.keys(studentApplicationsSnapshot.val()).map(
-            (jobId: string) => {
-              let application = studentApplicationsSnapshot.val()[jobId];
-
-              let job = loadedListings.find(
-                (listing) => listing.jobId === jobId
-              );
-
-              let applicationWithJob = {
-                jobId: jobId,
-                employerId: application.employerId,
-                whyThisProject: application.whyThisProject,
-                companyName: job.companyName,
-                companyEmail: job.companyEmail,
-                projectTitle: job.projectTitle,
-                projectDescription: job.projectDescription,
-                jobLocation: job.jobLocation,
-                projectTimeline: job.jobTimeline,
-                companyDescription: job.companyDescription,
-                createdAt: job.createdAt,
-                companyLogoURL: job.companyLogoURL,
-              };
-
-              return applicationWithJob;
-            }
-          )
-        );
-      }
-    );
   }
 
   console.log(listings);
@@ -118,6 +120,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
                       companyDescription={listing.companyDescription}
                       createdAt={listing.createdAt}
                       companyLogoURL={listing.companyLogoURL}
+                      alreadyApplied = {myAppsUIDS.includes(listing.jobId)}
                     />
                   </>
                 ))}

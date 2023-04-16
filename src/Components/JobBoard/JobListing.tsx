@@ -6,6 +6,7 @@ import FancyButton from "Components/FancyButton";
 import Swal from "sweetalert2";
 import { update, ref } from "firebase/database";
 import { FirebaseContext } from "@auth/FirebaseContext";
+import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 export default function JobListing(props: {
   companyName: string;
   projectTitle: string;
@@ -18,6 +19,7 @@ export default function JobListing(props: {
   currUid: string;
   jobId: string;
   employerId: string;
+  alreadyApplied: boolean;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -35,6 +37,7 @@ export default function JobListing(props: {
         currUid={props.currUid}
         jobId={props.jobId}
         employerId={props.employerId}
+        alreadyApplied={props.alreadyApplied}
       />
       <div onClick={() => setOpen(true)} className="hover:cursor-pointer">
         <div className="max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-md">
@@ -50,10 +53,10 @@ export default function JobListing(props: {
               </div>
               <a
                 href="#"
-                className="outline-none block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
+                className="outline-none flex items-center mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
                 role="link"
               >
-                {props.projectTitle}
+                {props.projectTitle}{props.alreadyApplied && <CheckBadgeIcon className="ml-1 mt-[1px] text-green-400 w-4 h-4"/>}
               </a>
               <p className="mt-2 text-sm text-gray-600">
                 {props.projectDescription}
@@ -87,6 +90,7 @@ const JobListingModal = (props: {
   currUid: string;
   jobId: string;
   employerId: string;
+  alreadyApplied:boolean;
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -133,6 +137,7 @@ const JobListingModal = (props: {
                   currUid={props.currUid}
                   jobId={props.jobId}
                   employerId={props.employerId}
+                  alreadyApplied={props.alreadyApplied}
                 />
                 {/* </div> */}
               </Dialog.Panel>
@@ -155,6 +160,7 @@ const JobListingModelContent = (props: {
   currUid: string;
   jobId: string;
   employerId: string;
+  alreadyApplied: boolean;
 }) => {
   const database = useContext(FirebaseContext).database;
   return (
@@ -238,7 +244,7 @@ const JobListingModelContent = (props: {
               });
             }}
           >
-            <FancyButton />
+            {!props.alreadyApplied && <FancyButton />}
           </div>
 
           <div className="flex flex-col">

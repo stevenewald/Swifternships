@@ -12,6 +12,7 @@ export default function MyJobListings(props: { user: any }) {
   const [currUser, setCurrUser] = useState(null);
   const [viewableData, setViewableData] = useState({});
   const [applicants, setApplicants] = useState({});
+  const [currApplicant, setCurrApplicant] = useState({});
   useEffect(() => {
     if (props.user) {
       const dbRef = ref(database, `employers/${props.user.uid}`);
@@ -63,6 +64,7 @@ export default function MyJobListings(props: { user: any }) {
         open2={open2}
         setOpen2={setOpen2}
         user={viewableData}
+        changeApplicant={setCurrApplicant}
         applicants={applicants}
       />
       <JobApplicantModal
@@ -70,6 +72,9 @@ export default function MyJobListings(props: { user: any }) {
         setOpen={setOpen}
         open2={open2}
         setOpen2={setOpen2}
+        user={viewableData}
+        applicants={applicants}
+        currApplicant={currApplicant}
       />
 
       <h2 className="text-lg font-medium text-gray-800 mb-4">
@@ -166,6 +171,7 @@ const JobListingModal = (props: {
   setOpen2: React.Dispatch<React.SetStateAction<boolean>>;
   user: any;
   applicants: any;
+  changeApplicant: any;
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -207,6 +213,7 @@ const JobListingModal = (props: {
                   open2={props.open2}
                   setOpen2={props.setOpen2}
                   user={props.user}
+                  changeApplicant={props.changeApplicant}
                   applicants={props.user ? props.applicants[props.user.id] : {}}
                 />
                 {/* </div> */}
@@ -226,6 +233,7 @@ const JobListingModelContent = (props: {
   setOpen2: React.Dispatch<React.SetStateAction<boolean>>;
   user: any;
   applicants: any;
+  changeApplicant: any;
 }) => {
   return (
     <div className="overflow-hidden bg-white rounded-lg shadow-md">
@@ -255,6 +263,7 @@ const JobListingModelContent = (props: {
             setOpen={props.setOpen}
             open2={props.open2}
             setOpen2={props.setOpen2}
+            changeApplicant={props.changeApplicant}
             applicants={props.applicants}
           />
         </div>
@@ -269,6 +278,7 @@ const JobListingApplicants = (props: {
   open2: boolean;
   setOpen2: React.Dispatch<React.SetStateAction<boolean>>;
   applicants: any;
+  changeApplicant: any;
 }) => {
   return (
     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -306,6 +316,7 @@ const JobListingApplicants = (props: {
                 onClick={() => {
                   props.setOpen(false);
                   props.setOpen2(true);
+                  props.changeApplicant(props.applicants[uid]);
                 }}
                 className="hover:bg-gray-50 hover:cursor-pointer"
               >
@@ -342,6 +353,9 @@ const JobApplicantModal = (props: {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   open2: boolean;
   setOpen2: React.Dispatch<React.SetStateAction<boolean>>;
+  applicants: any;
+  user: any;
+  currApplicant: any;
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -381,10 +395,10 @@ const JobApplicantModal = (props: {
                     <div className="flex justify-between">
                       <div className="text-left">
                         <h1 className="block text-3xl font-semibold text-gray-800 transition-colors duration-300 transform">
-                          Project Title
+                          {props.user?.projectTitle}
                         </h1>
                         <span className="mt-1 text-sm font-medium text-indigo-600 uppercase">
-                          Company Name
+                          {props.user?.businessName}
                         </span>
 
                         <div>
@@ -396,7 +410,7 @@ const JobApplicantModal = (props: {
                           </span>
                           <span className="mx-1 text-sm text-gray-600">·</span>
                           <span className="ml-1 text-sm text-gray-600">
-                            LOCATION: Evanston, IL. (On-Site)
+                            LOCATION: {props.user?.location}
                           </span>
                         </div>
                       </div>
@@ -435,7 +449,7 @@ const JobApplicantModal = (props: {
                     <hr className="h-px my-8 bg-gray-400 border-0" />
 
                     <h1 className="text-2xl text-gray-700 font-semibold">
-                      (Name)'s Profile
+                      {props.currApplicant.firstName}'s Profile
                     </h1>
 
                     <div className="grid grid-cols-2 xl:grid-cols-3 gap-2 p-2">
@@ -444,7 +458,7 @@ const JobApplicantModal = (props: {
                           Name
                         </h2>
                         <p className="mt-1 text-md text-gray-600">
-                          Justin Dong
+                          {props.currApplicant.firstName}{" "}{props.currApplicant.lastName}
                         </p>
                       </div>
                       <div>
@@ -452,61 +466,50 @@ const JobApplicantModal = (props: {
                           Email
                         </h2>
                         <p className="mt-1 text-md text-gray-600 break-words">
-                          ryannewkirk2024@u.northwestern.edu
+                          {props.currApplicant.email}
                         </p>
                       </div>
                       <div>
                         <h2 className=" text-lg text-gray-700 font-semibold">
                           Linkedin
                         </h2>
-                        <p className="mt-1 text-md text-gray-600">asdf</p>
+                        <a className="mt-1 text-md text-indigo-600" href={"https://linkedin.com/in/" + props.currApplicant.linkedin} target="_blank">{props.currApplicant.linkedin}</a>
                       </div>
-                      <div>
-                        <h2 className=" text-lg text-gray-700 font-semibold">
+                      {props.currApplicant?.github && <div>
+                        <h2 className="text-lg text-gray-700 font-semibold">
                           GitHub
                         </h2>
-                        <p className="mt-1 text-md text-gray-600">asdf</p>
-                      </div>
+                        <a className="mt-1 text-md text-indigo-600" href={"https://github.com/" + props.currApplicant.github} target="_blank">{props.currApplicant.github}</a>
+                      </div>}
                       <div>
                         <h2 className=" text-lg text-gray-700 font-semibold">
                           School
                         </h2>
-                        <p className="mt-1 text-md text-gray-600">asdf</p>
+                        <p className="mt-1 text-md text-gray-600">{props.currApplicant.school}</p>
                       </div>
                       <div>
                         <h2 className=" text-lg text-gray-700 font-semibold">
-                          Graduation Date
+                          Class Standing
                         </h2>
-                        <p className="mt-1 text-md text-gray-600">asdf</p>
+                        <p className="mt-1 text-md text-gray-600">{props.currApplicant.year}</p>
                       </div>
                       <div>
                         <h2 className=" text-lg text-gray-700 font-semibold">
                           GPA
                         </h2>
-                        <p className="mt-1 text-md text-gray-600">asdf</p>
+                        <p className="mt-1 text-md text-gray-600">{props.currApplicant.gpa}</p>
                       </div>
                     </div>
 
                     <hr className="h-px my-8 bg-gray-400 border-0" />
                     <h1 className="text-2xl text-gray-700 font-semibold">
-                      (Name)'s Application
+                      {props.currApplicant.firstName}'s Application
                     </h1>
                     <h2 className="mt-4 text-lg text-gray-700 font-semibold">
-                      How many hours per week can you commit to this
-                      swifternship?
-                    </h2>
-                    <p className="mt-1 text-md text-gray-600">_ hours</p>
-                    <h2 className="mt-4 text-lg text-gray-700 font-semibold">
-                      Why are you interested in working at [Business]?
+                      Why are you interested in working at {props.user.businessName}?
                     </h2>
                     <p className="mt-1 text-md text-gray-600">
-                      Natoque sem et aliquam mauris egestas quam volutpat
-                      viverra. In pretium nec senectus erat. Et malesuada
-                      lobortis. Natoque sem et aliquam mauris egestas quam
-                      volutpat viverra. In pretium nec senectus erat. Et
-                      malesuada lobortis. Natoque sem et aliquam mauris egestas
-                      quam volutpat viverra. In pretium nec senectus erat. Et
-                      malesuada lobortis.
+                      {props.currApplicant.applications && props.currApplicant.applications[props.user?.id] && props.currApplicant.applications[props.user?.id].whyThisProject}
                     </p>
                   </div>
                 </div>

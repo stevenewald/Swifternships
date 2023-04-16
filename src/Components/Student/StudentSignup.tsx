@@ -12,7 +12,9 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
   const yearRef = createRef<HTMLSelectElement>();
   const gpaRef = createRef<HTMLInputElement>();
   const majorRef = createRef<HTMLInputElement>();
+  const schoolRef = createRef<HTMLInputElement>();
   const linkedinRef = createRef<HTMLInputElement>();
+  const githubRef = createRef<HTMLInputElement>();
   const aboutRef = createRef<HTMLTextAreaElement>();
   const database = useContext(FirebaseContext).database;
   const storage = useContext(FirebaseContext).storage;
@@ -29,6 +31,8 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
         gpaRef.current.value = student.gpa;
         majorRef.current.value = student.major;
         aboutRef.current.value = student.about;
+        githubRef.current.value = student.github;
+        schoolRef.current.value = student.school;
       });
     }
   }, [props.user])
@@ -55,6 +59,22 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
       Swal.fire({
         toast: true,
         text: "Please enter a valid first name",
+        icon: "error",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+      return;
+    }
+    if (schoolRef.current.value.length < 1) {
+      Swal.fire({
+        toast: true,
+        text: "Please enter a valid school",
         icon: "error",
         position: "top-end",
         showConfirmButton: false,
@@ -145,6 +165,8 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
       major: majorRef.current.value,
       linkedin: linkedinRef.current.value,
       about: aboutRef.current.value,
+      github: githubRef.current.value,
+      school: schoolRef.current.value,
       signed_up: true,
     };
     if (props.user == null) {
@@ -232,6 +254,24 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
                         id="last-name"
                         autoComplete="family-name"
                         ref={lastNameRef}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="sm:col-span-4">
+                    <label
+                      htmlFor="school"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      School
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        type="text"
+                        name="school"
+                        id="school"
+                        ref={schoolRef}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -457,6 +497,32 @@ export default function StudentSignup(props: { user: any, newSignup:boolean }) {
                           name="linkedin"
                           id="linkedin"
                           ref={linkedinRef}
+                          className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                          placeholder="stevenewald"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="sm:col-span-4">
+                    <label
+                      htmlFor="github"
+                      className="flex text-sm font-medium leading-6 text-gray-900"
+                    >
+                      GitHub
+                      <p className="pl-1 text-gray-500 font-light">
+                        (optional)
+                      </p>
+                    </label>
+                    <div className="mt-2">
+                      <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
+                          https://github.com/
+                        </span>
+                        <input
+                          type="text"
+                          name="github"
+                          id="github"
+                          ref={githubRef}
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="stevenewald"
                         />

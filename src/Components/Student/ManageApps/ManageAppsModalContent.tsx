@@ -72,10 +72,6 @@ export default function ManageAppsModalContent(props: {
               Your Application
             </h1>
             <h2 className="mt-4 text-lg text-gray-700 font-semibold">
-              How many hours per week can you commit to this swifternship?
-            </h2>
-            <p className="mt-1 text-md text-gray-600">_ hours</p>
-            <h2 className="mt-4 text-lg text-gray-700 font-semibold">
               Why are you interested in working at [Business]?
             </h2>
             <p className="mt-1 text-md text-gray-600">
