@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# Swifternships
+Swifternships was built at WildHacks 2023, Northwestern University’s largest hackathon.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It was developed by Andrew Pulver, Justin Dong, Ryan Newkirk, and Steve Ewald.
+## Inspiration
+We were inspired by our past experiences. It is difficult to find experiential learning opportunities outside of the classroom to apply and further develop skills taught in our coursework. As a result, it was difficult for us to find our first internships because employers view internship experience as the top deciding factor between otherwise equal candidates. Hence, without prior professional experience, we were at a distinct disadvantage when we first went through the recruitment process.
 
-## Available Scripts
+Additionally, through our experiences from talking to startups and local businesses, they struggle to recruit college students, despite their relative proximity. This can prevent them from keeping pace with their business goals because they don’t have enough people on their team.
 
-In the project directory, you can run:
+Our identification of the problems facing college students, startups, and local businesses led us to create Swifternships.
+## What It Does
+Swifternships is the quick microinternships platform for college students. Our microinternships are short-term, unpaid internship opportunities that provide students with meaningful professional experiences. We simultaneously enable startups and local businesses to recruit college talent, enabling them to scale and grow.
 
-### `npm start`
+On the student side, students first go through an onboarding process to input information on their background. Afterward, they gain access to the job listings on the platform, enabling them to quickly apply to microinternship opportunities in 2 minutes. They also have the options to edit their profile and view their previously submitted applications.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+On the business side, employers also go through an onboarding process, similar to students. They can then post microinternship opportunities to college students and manage applications to each job listing they create.
+## How We Built It
+We built Swifternships using a React.js and Tailwind CSS frontend and a Google Cloud backend. The product was mainly developed using Typescript, with additional support from HTML, CSS, and Javascript. React Router was employed for smooth navigation, while SweetAlert2 was used for modal elements.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Apart from Google Cloud, we incorporated several APIs to enhance the platform's functionality. These included the Firebase API for access to its real-time database, the Twilio API for live notification delivery to our users, and the Sendinblue API for email notifications.
+## Challenges We Ran Into
+This challenge may be somewhat niche, but one of our most significant challenges was a bug in one of our GitHub branches that led to a divergent branch each time one of us made a merge request. Our initial solution was to “hack” around it by copying and pasting our code to "manually merge" it. However, we understood this approach was unsustainable (and bad practice), so we spent hours debugging it before we eventually resolved it.
+## Accomplishments That We’re Proud Of
+We are excited that we have developed a fully-functional MVP of our platform. Both college students and businesses have access to an entire suite of tools to connect with each other.
+## What We Learned
+We learned a lot from each other during WildHacks 2023. We taught each other about different web development tools and tricks, such as using the SweetAlert2 API to more effectively implement modal elements.
 
-### `npm test`
+Additionally, we developed our skills in various frameworks and APIs that we were less familiar with, including Tailwind CSS and Firebase Realtime Database.
+## What’s Next
+We have launched Swifternships! Our product is live at www.swifternships.tech.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Our initial launch is for Northwestern University college students. We have already partnered with 12 businesses that have posted 9 real and exciting microinternship opportunities on the platform. 
 
-### `npm run build`
+In the third quarter of 2023, we intend to expand to other universities in the Midwest before widening our outreach in the fourth quarter to all universities across the United States.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+If you are interested in a microinternship opportunity or are actively hiring, sign up on Swifternships today!
