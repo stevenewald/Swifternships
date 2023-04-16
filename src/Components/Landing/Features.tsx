@@ -1,48 +1,48 @@
 import {
-  ArrowPathIcon,
-  Cog6ToothIcon,
-  FingerPrintIcon,
-  ServerIcon,
+  DocumentArrowUpIcon,
+  UserGroupIcon,
+  CalendarIcon,
+  AcademicCapIcon,
   CheckCircleIcon,
-  BriefcaseIcon
+  BriefcaseIcon,
 } from "@heroicons/react/20/solid";
 
 const features = [
   {
-    name: "No experience required.",
+    name: "No experience required",
     description:
-      "Local businesses and startups are urgently recruiting Northwestern students for short-term projects you can complete during your studies - no experience necessary.",
+      "Our platform is designed to accommodate students from diverse backgrounds, allowing you to apply for micro-internships without any prior professional experience.",
     icon: CheckCircleIcon,
   },
   {
-    name: "Simple queues.",
+    name: "Boost your resume",
     description:
-      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.",
-    icon: ArrowPathIcon,
+      "Enhance your resume with unique professional experiences, showcasing your adaptability and eagerness to learn in a competitive job market.",
+    icon: DocumentArrowUpIcon,
   },
   {
-    name: "Advanced security.",
+    name: "Flexible scheduling",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.",
-    icon: FingerPrintIcon,
+      "Micro-internships offer short-term commitments, enabling you to balance your academic responsibilities while still gaining valuable professional exposure.",
+    icon: CalendarIcon,
   },
   {
-    name: "Powerful API.",
+    name: "Expand your professional network",
     description:
-      "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
-    icon: Cog6ToothIcon,
+      "Connect with industry professionals, mentors, and fellow interns to create lasting relationships that can lead to future opportunities and collaborations.",
+    icon: UserGroupIcon,
   },
   {
-    name: "Gain meaningful professional experience.",
+    name: "Gain meaningful professional experience",
     description:
-      "Empower your future with our platform: Dive into industry-backed projects for hands-on, transformative professional experiences.",
+      "Engage in real-world projects with local businesses and startups, helping you develop practical skills and enhance your understanding of various industries.",
     icon: BriefcaseIcon,
   },
   {
-    name: "Database backups.",
+    name: "Apply your academic knowledge",
     description:
-      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. ",
-    icon: ServerIcon,
+      "Utilize the knowledge and skills you've gained in your academic studies and apply them to real-world situations, fostering a deeper understanding of your field.",
+    icon: AcademicCapIcon,
   },
 ];
 
@@ -89,7 +89,7 @@ export default function Features() {
                 />
                 {feature.name}
               </dt>{" "}
-              <dd className="inline">{feature.description}</dd>
+              <dd>{feature.description}</dd>
             </div>
           ))}
         </dl>

@@ -120,7 +120,7 @@ function Full() {
               element={
                 <div>
                   <CheckLogin setUser={setUser} student={true}></CheckLogin>
-                  <JobBoardPage currTab={currTab}/>
+                  <JobBoardPage currTab={currTab} user={user}/>
                 </div>
               }
             ></Route>

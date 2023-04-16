@@ -1,4 +1,5 @@
 import JobListing from "./JobListing";
+import StudentSignup from "@student/StudentSignup";
 import { ref, child, get } from "firebase/database";
 import { FirebaseContext } from "@auth/FirebaseContext";
 import { useContext } from "react";
@@ -6,7 +7,6 @@ import { useContext } from "react";
 export default function JobBoardPage(props: { currTab: number }) {
   const database = useContext(FirebaseContext).database;
   const dbRef = ref(database);
-
   return (
     <>
       <main>
@@ -40,6 +40,7 @@ export default function JobBoardPage(props: { currTab: number }) {
                 ))}
               </>
             )}
+            {props.currTab === 1 && <StudentSignup user={props.user} />}
           </div>
         </div>
       </main>
