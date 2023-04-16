@@ -8,6 +8,10 @@ import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 import { getStorage, connectStorageEmulator } from "firebase/storage";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import JobBoardPage from "Components/JobBoard/JobBoardPage";
+import MyListingsPage from "Components/MyListings/MyListingsPage";
+
+import Sidebar from "Components/Sidebar";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -46,17 +50,39 @@ if (window.location.hostname === "localhost") {
   storage = getStorage(app);
   database = getDatabase(app);
 }
+
 root.render(
-  <Router>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div>
-            <Hero />
-          </div>
-        }
-      ></Route>
-    </Routes>
-  </Router>
+  <>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <Hero />
+            </div>
+          }
+        ></Route>
+
+        <Route element={<Sidebar userType={"student"} />}>
+          <Route
+            path="/jobs"
+            element={
+              <div>
+                <JobBoardPage />
+              </div>
+            }
+          ></Route>
+          <Route
+            path="/mylistings"
+            element={
+              <div>
+                <MyListingsPage />
+              </div>
+            }
+          ></Route>
+        </Route>
+      </Routes>
+    </Router>
+  </>
 );
