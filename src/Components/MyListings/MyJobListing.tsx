@@ -11,6 +11,9 @@ export default function MyJobListing() {
     <>
       <JobListingModal open={open} setOpen={setOpen} open2={open2} setOpen2={setOpen2} />
       <JobApplicantModal open={open} setOpen={setOpen} open2={open2} setOpen2={setOpen2} />
+
+      <h2 className="text-lg font-medium text-gray-800 mb-4">Your Job Listings</h2>
+
       <div onClick={() => {
   setOpen(true);
   setOpen2(false);}} className="hover:cursor-pointer">
@@ -21,7 +24,7 @@ export default function MyJobListing() {
             <div className="overflow-hidden truncate">
               <div className="flex items-center gap-4">
                 <Avatar size={8} />
-                <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
+                <span className="text-xs font-medium text-indigo-600 uppercase dark:text-indigo-400">
                   Business Name
                 </span>
               </div>
@@ -168,7 +171,7 @@ const JobListingApplicants = (props: {
                           </div>
                       </th>
                       <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        Email address
+                      Contact
                       </th>
                       <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                           <div className="flex items-center gap-x-2">
@@ -181,7 +184,7 @@ const JobListingApplicants = (props: {
                   {/* Applicant #1 */}
                   <tr onClick={() => {
                       props.setOpen(false);
-                      props.setOpen2(true);}} className="hover:cursor-pointer">
+                      props.setOpen2(true);}} className="hover:bg-gray-50 hover:cursor-pointer">
                   
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                           <div className="inline-flex items-center gap-x-3">
@@ -260,31 +263,115 @@ const JobApplicantModal = (props: {
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 w-full max-w-5xl mx-4">
 
                   <div className="p-6">
-                      <div>
-                        <h1 className="block text-3xl font-semibold text-gray-800 transition-colors duration-300 transform">
-                            Project Title
-                        </h1>
-                        <span className="mt-1 text-sm font-medium text-indigo-600 uppercase">
-                            Company Name
-                        </span>
 
-                        <div>
-                            <span className="mr-1 text-sm text-gray-600">
-                                POSTED: {dateDifference(new Date("2023-01-01T00:00:00.000Z"))}
+                      <div>
+
+
+                        <div className="flex justify-between">
+                          <div className="text-left">
+                            <h1 className="block text-3xl font-semibold text-gray-800 transition-colors duration-300 transform">
+                                Project Title
+                            </h1>
+                            <span className="mt-1 text-sm font-medium text-indigo-600 uppercase">
+                                Company Name
                             </span>
-                            <span className="mx-1 text-sm text-gray-600">
-                                ·
-                            </span>
-                            <span className="ml-1 text-sm text-gray-600">
-                                LOCATION: Evanston, IL. (On-Site)
-                            </span>
-                        </div>
+
+                            <div>
+                                <span className="mr-1 text-sm text-gray-600">
+                                    POSTED: {dateDifference(new Date("2023-01-01T00:00:00.000Z"))}
+                                </span>
+                                <span className="mx-1 text-sm text-gray-600">
+                                    ·
+                                </span>
+                                <span className="ml-1 text-sm text-gray-600">
+                                    LOCATION: Evanston, IL. (On-Site)
+                                </span>
+                            </div>
+
+                          </div>
+                          <div className="text-right">
+                            <div className="flex items-center mt-4 gap-x-4 sm:mt-0"
+                              onClick={() => {
+                                props.setOpen(true);
+                                props.setOpen2(false);}}>
+                                <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                                    </svg>
+                                    <span>
+                                        Back
+                                    </span>
+                                </a>
+                            </div>
+                          </div>
+                      </div>
+
+                        
                         <hr className="h-px my-8 bg-gray-400 border-0" />
 
                         <h1 className="text-2xl text-gray-700 font-semibold">
                           (Name)'s Profile
                         </h1>
-                        need to add info here
+                        
+                        <div className="grid grid-cols-2 xl:grid-cols-3 gap-2 p-2">
+                          <div>
+                            <h2 className=" text-lg text-gray-700 font-semibold">
+                              Name
+                            </h2>
+                            <p className="mt-1 text-md text-gray-600">
+                              Justin Dong
+                            </p>
+                          </div>
+                          <div>
+                            <h2 className=" text-lg text-gray-700 font-semibold">
+                              Email
+                            </h2>
+                            <p className="mt-1 text-md text-gray-600 break-words">
+                              ryannewkirk2024@u.northwestern.edu
+                            </p>
+                          </div>
+                          <div>
+                            <h2 className=" text-lg text-gray-700 font-semibold">
+                                Linkedin
+                            </h2>
+                            <p className="mt-1 text-md text-gray-600">
+                            asdf
+                            </p>
+                          </div>
+                          <div>
+                            <h2 className=" text-lg text-gray-700 font-semibold">
+                                GitHub
+                            </h2>
+                            <p className="mt-1 text-md text-gray-600">
+                            asdf
+                            </p>
+                          </div>
+                          <div>
+                            <h2 className=" text-lg text-gray-700 font-semibold">
+                                School
+                            </h2>
+                            <p className="mt-1 text-md text-gray-600">
+                            asdf
+                            </p>
+                          </div>
+                          <div>
+                            <h2 className=" text-lg text-gray-700 font-semibold">
+                                Graduation Date
+                            </h2>
+                            <p className="mt-1 text-md text-gray-600">
+                            asdf
+                            </p>
+                          </div>
+                          <div>
+                            <h2 className=" text-lg text-gray-700 font-semibold">
+                                GPA
+                            </h2>
+                            <p className="mt-1 text-md text-gray-600">
+                            asdf
+                            </p>
+                          </div>
+                        </div>
+
                         <hr className="h-px my-8 bg-gray-400 border-0" />
                         <h1 className="text-2xl text-gray-700 font-semibold">
                           (Name)'s Application
@@ -307,7 +394,9 @@ const JobApplicantModal = (props: {
                             erat. Et malesuada lobortis.
                         </p>
                       </div>
-                  </div>
+
+                
+              </div>
 
 
 
@@ -316,19 +405,7 @@ const JobApplicantModal = (props: {
 
 
 
-                <div className="flex items-center mt-4 gap-x-4 sm:mt-0"
-                onClick={() => {
-                  props.setOpen(true);
-                  props.setOpen2(false);}}>
-                  <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-                      </svg>
-                      <span>
-                          Back
-                      </span>
-                  </a>
-                </div>
+                
                 {/* </div> */}
               </Dialog.Panel>
             </Transition.Child>
