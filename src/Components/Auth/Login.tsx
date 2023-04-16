@@ -2,7 +2,8 @@ import { FirebaseContext } from "@auth/FirebaseContext";
 import { useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 import { ref, child, get } from "firebase/database";
-export default function Login(props: { user: any }) {
+import Logo from "@images/logo.png";
+export default function Login() {
   const firebase = useContext(FirebaseContext).firebase;
   const database = useContext(FirebaseContext).database;
   const provider = useContext(FirebaseContext).provider;
@@ -50,11 +51,12 @@ export default function Login(props: { user: any }) {
     }
   }
   useEffect(() => {
-    if (props.user == null) {
-      return;
-    }
-    completeLogin(props.user.email, props.user.uid);
-  }, props.user);
+    firebase.auth().onAuthStateChanged((user: any) => {
+      if(user) {
+        completeLogin(user.email, user.uid);
+      }
+    })
+  }, []);
   return (
     <div className="flex min-h-full">
       <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -62,7 +64,7 @@ export default function Login(props: { user: any }) {
           <div>
             <img
               className="h-12 w-auto"
-              src="https://is5-ssl.mzstatic.com/image/thumb/Purple122/v4/f3/9b/6e/f39b6e96-766a-39cd-184b-2f5286f40c81/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/246x0w.webp"
+              src={Logo}
               alt="Swifternships"
             />
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">

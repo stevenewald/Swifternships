@@ -17,6 +17,7 @@ import Basic from "@student/Basic";
 import CheckLogin from "@auth/CheckLogin";
 import Login from "@auth/Login";
 import StudentSignup from "@student/StudentSignup";
+import Stats from "@landing/Stats";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -68,6 +69,7 @@ function Full() {
               <div>
                 <Hero />
                 <Features />
+                <Stats />
                 <Team />
                 <FAQs />
               </div>
@@ -82,8 +84,8 @@ function Full() {
               </>
             }
           ></Route>
-          <Route path="/login" element={<Login user={user}/>}></Route>
-          <Route path="/student_signup" element={<StudentSignup user={user} />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/student_signup" element={<><CheckLogin setUser={setUser} student={true}></CheckLogin><StudentSignup user={user} /></>}></Route>
         </Routes>
       </Router>
     </FirebaseContext.Provider>
