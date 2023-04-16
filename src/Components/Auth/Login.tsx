@@ -73,7 +73,7 @@ export default function Login() {
               Welcome to Swifternships
             </h2>
             <p className="mt-2 text-sm text-gray-600 font-medium">
-              Access Your Micro-Internship Opportunities - Login Now!
+              Access Your Microinternship Opportunities - Login Now!
             </p>
           </div>
 

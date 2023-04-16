@@ -12,7 +12,7 @@ const features = [
   {
     name: "No experience required",
     description:
-      "Our platform is designed to accommodate students from diverse backgrounds, allowing you to apply for micro-internships without any prior professional experience.",
+      "Our platform is designed to accommodate students from diverse backgrounds, allowing you to apply for microinternships without any prior professional experience.",
     icon: CheckCircleIcon,
   },
   {
@@ -24,7 +24,7 @@ const features = [
   {
     name: "Flexible scheduling",
     description:
-      "Micro-internships offer short-term commitments, enabling you to balance your academic responsibilities while still gaining valuable professional exposure.",
+      "Microinternships offer short-term commitments, enabling you to balance your academic responsibilities while still gaining valuable professional exposure.",
     icon: CalendarIcon,
   },
   {
