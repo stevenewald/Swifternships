@@ -59,7 +59,7 @@ export default function Features() {
             No experience? No problem.
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Local businesses and startups are recruiting Northwestern students
+            Local businesses and startups are recruiting college students
             for short-term projects you can complete during your studies - no
             experience necessary
           </p>

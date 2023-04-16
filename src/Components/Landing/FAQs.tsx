@@ -4,7 +4,7 @@ const faqs = [
   {
     question: "What is Swifternships?",
     answer:
-      "Swifternships is a unique service that connects Northwestern students with local businesses and startups, providing them with short-term, unpaid internship opportunities. The platform aims to provide students with meaningful professional experience and to help businesses and startups find talented students to help them grow.",
+      "Swifternships is a unique service that connects college students with local businesses and startups, providing them with short-term, unpaid internship opportunities. The platform aims to provide students with meaningful professional experience and to help businesses and startups find talented students to help them grow.",
   },
   {
     question: "Why should I join a micro-internship?",
@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "Who is eligible to apply for micro-internships?",
     answer:
-      "All currently enrolled Northwestern students, regardless of their major, are eligible to apply for micro-internships through the platform.",
+      "All currently enrolled college students, regardless of their major, are eligible to apply for micro-internships through the platform.",
   },
   {
     question: "How long do micro-internships last?",
