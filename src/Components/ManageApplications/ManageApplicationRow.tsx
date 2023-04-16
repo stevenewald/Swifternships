@@ -46,12 +46,12 @@ const ApplicationRow = (props: {
 
   return (
     <>
+      <ManageAppsModal
+        open={open}
+        setOpen={setOpen}
+        application={props.application}
+      />
       <tr onClick={() => setOpen(true)} className="hover:cursor-pointer">
-        <ManageAppsModal
-          open={open}
-          setOpen={setOpen}
-          application={props.application}
-        />
         <td
           onClick={() => {
             setOpen(true);
