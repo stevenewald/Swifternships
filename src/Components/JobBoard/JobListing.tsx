@@ -12,6 +12,7 @@ export default function JobListing(props: {
   projectTimeline: string;
   companyDescription: string;
   createdAt: Date;
+  companyLogoURL: string;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -34,14 +35,14 @@ export default function JobListing(props: {
           <div className="p-6">
             <div className="overflow-hidden truncate">
               <div className="flex items-center gap-4">
-                <Avatar size={8} />
+                <Avatar size={8} logoURL={props.companyLogoURL} />
                 <span className="text-xs font-medium text-blue-600 uppercase">
                   {props.companyName}
                 </span>
               </div>
               <a
                 href="#"
-                className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
+                className="outline-none block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
                 role="link"
               >
                 {props.projectTitle}
@@ -54,7 +55,7 @@ export default function JobListing(props: {
             <div className="mt-4">
               <div className="flex items-center">
                 <span className="text-xs text-gray-600">
-                  {dateDifference(props.createdAt)}
+                  {false && dateDifference(props.createdAt)}
                 </span>
               </div>
             </div>
@@ -157,7 +158,7 @@ const JobListingModelContent = (props: {
 
           <div>
             <span className="mr-1 text-sm text-gray-600">
-              POSTED: {dateDifference(props.createdAt)}
+              POSTED: {false && dateDifference(props.createdAt)}
             </span>
             <span className="mx-1 text-sm text-gray-600">·</span>
             <span className="ml-1 text-sm text-gray-600">

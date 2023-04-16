@@ -64,8 +64,9 @@ export default function Login() {
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div>
             <img
-              className="h-12 w-auto"
+              className="h-12 w-auto cursor-pointer"
               src={Logo}
+              onClick={() => {window.location.href="/"}}
               alt="Swifternships"
             />
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">

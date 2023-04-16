@@ -101,7 +101,7 @@ function Full() {
             element={
               <>
                 <CheckLogin setUser={setUser} student={true}></CheckLogin>
-                <StudentSignup user={user} />
+                <StudentSignup user={user} newSignup={true} />
               </>
             }
           ></Route>
@@ -141,10 +141,6 @@ function Full() {
               }
             ></Route>
             <Route path="/login" element={<Login />}></Route>
-            <Route
-              path="/student_signup"
-              element={<StudentSignup user={user} />}
-            ></Route>
           </Route>
         </Routes>
       </Router>

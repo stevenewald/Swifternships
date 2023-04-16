@@ -2,11 +2,38 @@ import JobListing from "./JobListing";
 import StudentSignup from "@student/StudentSignup";
 import { ref, child, get } from "firebase/database";
 import { FirebaseContext } from "@auth/FirebaseContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
-export default function JobBoardPage(props: { currTab: number }) {
+export default function JobBoardPage(props:{currTab:number, user:any}) {
   const database = useContext(FirebaseContext).database;
   const dbRef = ref(database);
+  const [listings, setListings]:any = useState([]);
+  async function getListings() {
+    var newListings:any = [];
+    await get(child(dbRef, "employers")).then((employerSnapshot) => (
+      Object.keys(employerSnapshot.val()).map((employerUID:any) => {const employer = employerSnapshot.val()[employerUID]; if(!employer.jobs) {return};newListings.push(
+        Object.keys(employer.jobs).map((jobId:any) => {const job = employer.jobs[jobId]; return (
+           <JobListing companyName={employer.companyName}
+           projectTitle={job.projectTitle}
+           projectDescription={
+             job.projectDescription
+           }
+           jobLocation={job.jobLocation}
+           projectTimeline={
+             job.jobTimeline
+           }
+           companyDescription={
+             employer.companyDescription
+           }
+           createdAt={job.createdAt}
+           companyLogoURL={employer.logo_link}
+            />
+        )})
+      )})
+     ))
+    setListings(newListings);
+  }
+  useEffect(() => {if(props.user) {getListings()}}, [props.user])
   return (
     <>
       <main>
@@ -15,32 +42,10 @@ export default function JobBoardPage(props: { currTab: number }) {
             {/* Main area */}
             {props.currTab === 0 && (
               <>
-                {get(child(dbRef, "employers/")).then((employerSnapshot) => (
-                  <>
-                    {get(child(dbRef, "jobpostings/")).then(
-                      (jobpostingSnapshot: any) => (
-                        <JobListing
-                          companyName={employerSnapshot.val().companyName}
-                          projectTitle={jobpostingSnapshot.val().projectTitle}
-                          projectDescription={
-                            jobpostingSnapshot.val().projectDescription
-                          }
-                          jobLocation={jobpostingSnapshot.val().jobLocation}
-                          projectTimeline={
-                            jobpostingSnapshot.val().projectTimeline
-                          }
-                          companyDescription={
-                            employerSnapshot.val().companyDescription
-                          }
-                          createdAt={jobpostingSnapshot.val().createdAt}
-                        />
-                      )
-                    )}
-                  </>
-                ))}
+                {listings}
               </>
             )}
-            {props.currTab === 1 && <StudentSignup user={props.user} />}
+            {props.currTab===1 && <StudentSignup user={props.user} newSignup={false}/>}
           </div>
         </div>
       </main>
