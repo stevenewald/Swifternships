@@ -19,10 +19,10 @@ import Login from "@auth/Login";
 import StudentSignup from "@student/StudentSignup";
 import Stats from "@landing/Stats";
 
-import MyListingsPage from "Components/MyListings/MyListingsPage";
 import Sidebar from "Components/Sidebar";
 import JobBoardPage from "Components/JobBoard/JobBoardPage";
 import EmployerSignup from "@employer/EmployerSignup";
+import MyJobListings from "Components/MyListings/MyJobListings";
 import ManageApplications from "Components/ManageApplications/ManageApps";
 
 const root = ReactDOM.createRoot(
@@ -128,7 +128,7 @@ function Full() {
               path="/mylistings"
               element={
                 <div>
-                  <MyListingsPage />
+                  <MyJobListings/>
                 </div>
               }
             ></Route>
