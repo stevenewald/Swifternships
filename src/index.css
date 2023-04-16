@@ -31,7 +31,7 @@ html {
   
   .buttoncta:hover {
     transition: 0.5s;
-    box-shadow: 10px 10px 0 #fbc638;
+    box-shadow: 10px 10px 0 #7986cb;
   }
   
   .buttoncta span:nth-child(2) {
@@ -88,7 +88,7 @@ html {
       fill: white;
     }
     50% {
-      fill: #fbc638;
+      fill: #7986cb;
     }
     100% {
       fill: white;

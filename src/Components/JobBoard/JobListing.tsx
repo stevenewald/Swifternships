@@ -115,7 +115,7 @@ const JobListingModelContent = () => {
 
       <div className="p-6">
         <div>
-          <h1 className="block text-3xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline">
+          <h1 className="block text-3xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600">
             Project Title
           </h1>
           <span className="mt-1 text-sm font-medium text-indigo-600 uppercase">

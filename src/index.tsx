@@ -22,6 +22,7 @@ import Stats from "@landing/Stats";
 import MyListingsPage from "Components/MyListings/MyListingsPage";
 import Sidebar from "Components/Sidebar";
 import JobBoardPage from "Components/JobBoard/JobBoardPage";
+import ManageApplications from "Components/ManageApplications/ManageApps";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -104,10 +105,9 @@ function Full() {
           ></Route>
           <Route element={<Sidebar userType={"student"} studentUser={studentUser}/>}>
             <Route
-              path="/student"
+              path="/jobs"
               element={
                 <div>
-                  <CheckLogin setUser={setUser} student={true}></CheckLogin>
                   <JobBoardPage />
                 </div>
               }
@@ -117,6 +117,14 @@ function Full() {
               element={
                 <div>
                   <MyListingsPage />
+                </div>
+              }
+            ></Route>
+            <Route
+              path="/myapplications"
+              element={
+                <div>
+                  <ManageApplications />
                 </div>
               }
             ></Route>
