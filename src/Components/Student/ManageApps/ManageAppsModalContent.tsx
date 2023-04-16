@@ -1,10 +1,13 @@
 // import { dateDifference } from "utils/dateDifference";
 
+import ApplicationStatusBadge from "./ApplicationStatusBadge";
+
 export default function ManageAppsModalContent(props: {
   application: {
     jobId: string;
     employerId: string;
     whyThisProject: string;
+    applicationStatus: string;
     companyName: string;
     companyEmail: string;
     projectTitle: string;
@@ -68,9 +71,14 @@ export default function ManageAppsModalContent(props: {
               {props.application.projectTimeline}
             </p>
             <hr className="h-px my-8 bg-gray-400 border-0" />
-            <h1 className="text-2xl text-gray-700 font-semibold">
-              Your Application
-            </h1>
+            <div className="flex gap-5">
+              <h1 className="text-2xl text-gray-700 font-semibold">
+                Your Application
+              </h1>
+              <ApplicationStatusBadge
+                applicationStatus={props.application.applicationStatus}
+              />
+            </div>
             <h2 className="mt-4 text-lg text-gray-700 font-semibold">
               How many hours per week can you commit to this swifternship?
             </h2>

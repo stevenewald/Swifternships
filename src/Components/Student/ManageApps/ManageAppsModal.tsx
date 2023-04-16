@@ -9,6 +9,7 @@ export default function ManageAppsModal(props: {
     jobId: string;
     employerId: string;
     whyThisProject: string;
+    applicationStatus: string;
     companyName: string;
     companyEmail: string;
     projectTitle: string;

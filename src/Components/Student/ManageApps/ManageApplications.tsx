@@ -4,6 +4,7 @@ export default function ManageApplications(props: {
   applications: {
     jobId: string;
     employerId: string;
+    applicationStatus: string;
     whyThisProject: string;
     companyName: string;
     companyEmail: string;

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import ApplicationStatusBadge from "./ApplicationStatusBadge";
 import ManageAppsModal from "./ManageAppsModal";
 
 export default function ManageApplicationRow(props: {
   applications: {
     jobId: string;
     employerId: string;
+    applicationStatus: string;
     whyThisProject: string;
     companyName: string;
     companyEmail: string;
@@ -30,6 +32,7 @@ const ApplicationRow = (props: {
   application: {
     jobId: string;
     employerId: string;
+    applicationStatus: string;
     whyThisProject: string;
     companyName: string;
     companyEmail: string;
@@ -75,13 +78,9 @@ const ApplicationRow = (props: {
           </div>
         </td>
         <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60">
-            <span className="h-1.5 w-1.5 rounded-full bg-yellow-800"></span>
-
-            <h2 className="text-sm font-normal text-yellow-800">
-              Under Review
-            </h2>
-          </div>
+          <ApplicationStatusBadge
+            applicationStatus={props.application.applicationStatus}
+          />
         </td>
         <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
           {props.application.projectTitle}

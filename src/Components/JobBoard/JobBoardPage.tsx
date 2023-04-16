@@ -63,6 +63,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
               let applicationWithJob = {
                 jobId: jobId,
                 employerId: application.employerId,
+                applicationStatus: application.applicationStatus,
                 whyThisProject: application.whyThisProject,
                 companyName: job.companyName,
                 companyEmail: job.companyEmail,
@@ -106,7 +107,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
                 {listings.map((listing: any) => (
                   <>
                     <JobListing
-                    currUid={props.user.uid}
+                      currUid={props.user.uid}
                       jobId={listing.jobId}
                       employerId={listing.employerId}
                       companyName={listing.companyName}
@@ -130,7 +131,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
                 <ManageApplications applications={myApplications} />
               </>
             )}
-            {props.currTab === 4 && <NewListing user={props.user}/>}
+            {props.currTab === 4 && <NewListing user={props.user} />}
           </div>
         </div>
       </main>

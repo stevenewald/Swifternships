@@ -221,7 +221,11 @@ const JobListingModelContent = (props: {
                         "/applications/" +
                         props.jobId
                     ),
-                    { employerId: props.employerId, whyThisProject: res.value }
+                    {
+                      employerId: props.employerId,
+                      whyThisProject: res.value,
+                      applicationStatus: "Under Review",
+                    }
                   ).then(() => {
                     Swal.fire({
                       icon: "success",
