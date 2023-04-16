@@ -21,6 +21,7 @@ export default function JobListing(props: {
   employerId: string;
   alreadyApplied: boolean;
   companyEmail: string;
+  currUserPhone: string;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -40,6 +41,7 @@ export default function JobListing(props: {
         employerId={props.employerId}
         alreadyApplied={props.alreadyApplied}
         companyEmail={props.companyEmail}
+        currUserPhone={props.currUserPhone}
       />
       <div onClick={() => setOpen(true)} className="hover:cursor-pointer">
         <div className="max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-md">
@@ -94,6 +96,7 @@ const JobListingModal = (props: {
   employerId: string;
   alreadyApplied:boolean;
   companyEmail:string;
+  currUserPhone: string;
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -142,6 +145,7 @@ const JobListingModal = (props: {
                   employerId={props.employerId}
                   alreadyApplied={props.alreadyApplied}
                   companyEmail={props.companyEmail}
+                  currUserPhone={props.currUserPhone}
                 />
                 {/* </div> */}
               </Dialog.Panel>
@@ -166,6 +170,7 @@ const JobListingModelContent = (props: {
   employerId: string;
   alreadyApplied: boolean;
   companyEmail: string;
+  currUserPhone: string;
 }) => {
   const database = useContext(FirebaseContext).database;
   const firebase = useContext(FirebaseContext).firebase;
@@ -229,6 +234,11 @@ const JobListingModelContent = (props: {
                     email: props.companyEmail,
                     jobTitle: props.projectTitle,
                   });
+                  firebase.functions().httpsCallable("sendApplicationText")({
+                    phone: props.currUserPhone,
+                    jobTitle: props.projectTitle,
+                    companyName: props.companyName,
+                  })
                   update(
                     ref(
                       database,

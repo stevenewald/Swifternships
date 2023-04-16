@@ -13,6 +13,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
   const [listings, setListings]: any = useState([]);
   const [myApplications, setMyApplications]: any = useState([]);
   const [myAppsUIDS, setmyAppsUIDS]: any = useState([]);
+  const [phone, setPhone]:any = useState("");
   async function getMyApplications(loadedListings: any[]) {
     await get(child(dbRef, `students/${props.user.uid}/applications`)).then(
       (studentApplicationsSnapshot) => {
@@ -50,6 +51,14 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
             }
           )
         );
+      }
+    );
+    await get(child(dbRef, `students/${props.user.uid}/phone`)).then(
+      (studentApplicationsSnapshot) => {
+        if (!studentApplicationsSnapshot.exists()) {
+          return;
+        }
+        setPhone(studentApplicationsSnapshot.val());
       }
     );
   }
@@ -124,6 +133,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
                       companyLogoURL={listing.companyLogoURL}
                       alreadyApplied = {myAppsUIDS.includes(listing.jobId)}
                       companyEmail = {listing.companyEmail}
+                      currUserPhone={phone}
                     />
                   </>
                 ))}

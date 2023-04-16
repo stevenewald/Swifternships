@@ -3,7 +3,13 @@ const admin = require("firebase-admin");
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
   databaseURL: "https://swifternships-default-rtdb.firebaseio.com/",
-});
+}); 
+
+const ACC_SID = functions.config().twilio.acc_sid2;
+const AUTH_TOKEN = functions.config().twilio.auth_token2;
+const twilio_client = require("twilio")(ACC_SID, AUTH_TOKEN);
+const phoneUtil =
+  require("google-libphonenumber").PhoneNumberUtil.getInstance(); 
 
 let studentRef = admin.database().ref("students");
 let businessRef = admin.database().ref("employers");
@@ -52,3 +58,20 @@ exports.createApplicationEmail = functions.https.onCall(
     });
   }
 );
+
+exports.sendApplicationText = functions.https.onCall(async (data, context) => {
+  console.log(functions.config().twilio.acc_sid)
+  console.log(functions.config().twilio.auth_token)
+  const text = "You've successfully submitted an application for " +
+  data.jobTitle +
+  " at " +
+  data.companyName + 
+  "! You can view your application at swifternships.tech/student. You'll receive further SMS messages when your application is reviewed."
+  console.log(text);
+  await twilio_client.messages.create({
+    body: text,
+    from: "+17579193238",
+    to: "+1" + phoneUtil.parse(data.phone, "US").getNationalNumber(),
+  }).catch((err) => {console.log(err)});
+  console.log("Sent text to " + phoneUtil.parse(data.phone, "US").getNationalNumber());
+});

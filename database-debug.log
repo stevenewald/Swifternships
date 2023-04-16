@@ -1,9 +1,9 @@
-16:52:15.516 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-16:52:15.606 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-16:52:17.603 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - swifternships-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 68ms, init: 0ms
-16:52:21.892 [FirebaseWorkerPool-1-2] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
+12:34:55.028 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+12:34:55.123 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+12:35:02.000 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - swifternships-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 74ms, init: 0ms
+12:35:11.910 [NamespaceSystem-blocking-namespace-operation-dispatcher-9] INFO com.firebase.core.namespace.StateManager - Namespace swifternships-default-rtdb status Active to Active
+12:35:33.540 [FirebaseWorkerPool-1-4] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
 namespace swifternships, but the emulator is configured for swifternships-default-rtdb. To 
 opt-out of single project mode add/set the single_project_mode: false property in 
 the firebase.json emulators config. 
-16:52:21.895 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - swifternships successfully activated FBKV (SurveyIdle(0)) wait: 1ms, init: 0ms
-16:52:32.157 [NamespaceSystem-blocking-namespace-operation-dispatcher-14] INFO com.firebase.core.namespace.StateManager - Namespace swifternships-default-rtdb status Active to Active
+12:35:33.548 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - swifternships successfully activated FBKV (SurveyIdle(0)) wait: 1ms, init: 0ms
