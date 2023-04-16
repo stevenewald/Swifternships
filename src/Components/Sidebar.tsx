@@ -27,16 +27,16 @@ const studentNavigation = [
 ];
 
 const businessNavigation = [
-  { name: "My Listings", href: "/mylistings", icon: HomeIcon },
+  { name: "My Listings", id:3,icon: HomeIcon },
+  { name: "New Project", id:4,icon: HomeIcon },
   {
     name: "Profile Settings",
-    href: "/profile",
+    id:5,
     icon: UsersIcon,
   },
 ];
 
 export default function Sidebar(props: {
-  userType: "student" | "business";
   studentUser: any;
   setCurrTab: any;
   currTab: number;
@@ -44,7 +44,7 @@ export default function Sidebar(props: {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [navigation]: any = useState(
-    props.userType === "student" ? studentNavigation : businessNavigation
+    window.location.href.includes("student") ? studentNavigation : businessNavigation
   );
 
   return (

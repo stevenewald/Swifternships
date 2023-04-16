@@ -7,7 +7,7 @@ import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 import { getStorage, connectStorageEmulator } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {ref, child, get} from "firebase/database";
+import { ref, child, get } from "firebase/database";
 
 import Hero from "@landing/Hero";
 import Features from "@landing/Features";
@@ -19,7 +19,6 @@ import Login from "@auth/Login";
 import StudentSignup from "@student/StudentSignup";
 import Stats from "@landing/Stats";
 
-import MyListingsPage from "Components/MyListings/MyListingsPage";
 import Sidebar from "Components/Sidebar";
 import JobBoardPage from "Components/JobBoard/JobBoardPage";
 import EmployerSignup from "@employer/EmployerSignup";
@@ -30,7 +29,7 @@ const root = ReactDOM.createRoot(
 
 const firebaseConfig = {
   apiKey: "AIzaSyA4jyxuftXidnBGhPBQ-XWMWvpTJeMmsfY",
-  authDomain: "auth.swifternships.tech",
+  authDomain: "www.swifternships.tech",
   databaseURL: "https://swifternships-default-rtdb.firebaseio.com",
   projectId: "swifternships",
   storageBucket: "swifternships.appspot.com",
@@ -62,7 +61,6 @@ if (window.location.hostname === "localhost") {
   database = getDatabase(app);
 }
 
-
 function Full() {
   const [user, setUser] = useState(null);
   const [studentUser, setStudentUser] = useState(null);
@@ -75,9 +73,14 @@ function Full() {
         } else {
           console.log("No data available");
         }
-      })
+      });
     }
-  }, [user])
+  }, [user]);
+  useEffect(() => {
+    if(window.location.href.includes("employer")) {
+      setCurrTab(3);
+    }
+  }, []);
   return (
     <FirebaseContext.Provider value={{ firebase, database, storage, provider }}>
       <Router>
@@ -113,21 +116,30 @@ function Full() {
               </>
             }
           ></Route>
-          <Route element={<Sidebar userType={"student"} studentUser={studentUser} setCurrTab={setCurrTab} currTab={currTab}/>}>
+          <Route
+            element={
+              <Sidebar
+                studentUser={studentUser}
+                setCurrTab={setCurrTab}
+                currTab={currTab}
+              />
+            }
+          >
             <Route
               path="/student"
               element={
                 <div>
                   <CheckLogin setUser={setUser} student={true}></CheckLogin>
-                  <JobBoardPage currTab={currTab} user={user}/>
+                  <JobBoardPage currTab={currTab} user={user} />
                 </div>
               }
             ></Route>
             <Route
-              path="/mylistings"
+              path="/employer"
               element={
                 <div>
-                  <MyListingsPage />
+                  <CheckLogin setUser={setUser} student={true}></CheckLogin>
+                  <JobBoardPage currTab={currTab} user={user} />
                 </div>
               }
             ></Route>

@@ -3,6 +3,7 @@ import StudentSignup from "@student/StudentSignup";
 import { ref, child, get } from "firebase/database";
 import { FirebaseContext } from "@auth/FirebaseContext";
 import { useContext, useEffect, useState } from "react";
+import NewListing from "@employer/NewListing";
 
 export default function JobBoardPage(props:{currTab:number, user:any}) {
   const database = useContext(FirebaseContext).database;
@@ -41,7 +42,7 @@ export default function JobBoardPage(props:{currTab:number, user:any}) {
     <>
       <main>
         <div>
-          <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
+          <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6 space-y-4">
             {/* Main area */}
             {props.currTab === 0 && (
               <>
@@ -49,6 +50,7 @@ export default function JobBoardPage(props:{currTab:number, user:any}) {
               </>
             )}
             {props.currTab===1 && <StudentSignup user={props.user} newSignup={false}/>}
+            {props.currTab===4 && <NewListing user={props.user}/>}
           </div>
         </div>
       </main>
