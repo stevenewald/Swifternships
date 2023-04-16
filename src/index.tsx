@@ -65,6 +65,7 @@ if (window.location.hostname === "localhost") {
 function Full() {
   const [user, setUser] = useState(null);
   const [studentUser, setStudentUser] = useState(null);
+  const [currTab, setCurrTab] = useState(0);
   useEffect(() => {
     if (user) {
       get(child(ref(database), "students/" + user.uid)).then((snapshot) => {
@@ -102,13 +103,13 @@ function Full() {
               </>
             }
           ></Route>
-          <Route element={<Sidebar userType={"student"} studentUser={studentUser}/>}>
+          <Route element={<Sidebar userType={"student"} studentUser={studentUser} setCurrTab={setCurrTab} currTab={currTab}/>}>
             <Route
               path="/student"
               element={
                 <div>
                   <CheckLogin setUser={setUser} student={true}></CheckLogin>
-                  <JobBoardPage />
+                  <JobBoardPage currTab={currTab}/>
                 </div>
               }
             ></Route>

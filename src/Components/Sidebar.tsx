@@ -11,16 +11,18 @@ function classNames(...classes: any) {
 }
 
 const studentNavigation = [
-  { name: "Jobs", href: "/jobs", icon: HomeIcon },
+  { name: "Jobs", icon: HomeIcon, id: 0 },
   {
     name: "Profile Settings",
-    href: "/profile",
+
     icon: UsersIcon,
+    id: 1,
   },
   {
     name: "Applications",
-    href: "/myapplications",
+
     icon: FolderIcon,
+    id: 2,
   },
 ];
 
@@ -33,10 +35,15 @@ const businessNavigation = [
   },
 ];
 
-export default function Sidebar(props: { userType: "student" | "business", studentUser:any }) {
+export default function Sidebar(props: {
+  userType: "student" | "business";
+  studentUser: any;
+  setCurrTab: any;
+  currTab: number;
+}) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const [navigation] = useState(
+  const [navigation]: any = useState(
     props.userType === "student" ? studentNavigation : businessNavigation
   );
 
@@ -108,20 +115,22 @@ export default function Sidebar(props: { userType: "student" | "business", stude
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
-                            {navigation.map((item) => (
+                            {navigation.map((item: any) => (
                               <li key={item.name}>
-                                <a
-                                  href={item.href}
+                                <button
+                                  onClick={() => {
+                                    props.setCurrTab(item.id);
+                                  }}
                                   className={classNames(
-                                    item.href === window.location.pathname
+                                    item.id == props.currTab
                                       ? "bg-gray-50 text-indigo-600"
                                       : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
-                                    "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                    "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold cursor-pointer w-full"
                                   )}
                                 >
                                   <item.icon
                                     className={classNames(
-                                      item.href === window.location.pathname
+                                      item.id == props.currTab
                                         ? "text-indigo-600"
                                         : "text-gray-400 group-hover:text-indigo-600",
                                       "h-6 w-6 shrink-0"
@@ -129,7 +138,7 @@ export default function Sidebar(props: { userType: "student" | "business", stude
                                     aria-hidden="true"
                                   />
                                   {item.name}
-                                </a>
+                                </button>
                               </li>
                             ))}
                           </ul>
@@ -148,30 +157,28 @@ export default function Sidebar(props: { userType: "student" | "business", stude
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
             <div className="pt-2 flex h-16 shrink-0 items-center">
-              <img
-                className="h-10 w-auto"
-                src={Logo}
-                alt="Swifternship"
-              />
+              <img className="h-10 w-auto" src={Logo} alt="Swifternship" />
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {navigation.map((item) => (
+                    {navigation.map((item: any) => (
                       <li key={item.name}>
-                        <a
-                          href={item.href}
+                        <button
+                          onClick={() => {
+                            props.setCurrTab(item.id);
+                          }}
                           className={classNames(
-                            item.href === window.location.pathname
+                            item.id == props.currTab
                               ? "bg-gray-50 text-indigo-600"
                               : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
-                            "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                            "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold cursor-pointer w-full"
                           )}
                         >
                           <item.icon
                             className={classNames(
-                              item.href === window.location.pathname
+                              item.id == props.currTab
                                 ? "text-indigo-600"
                                 : "text-gray-400 group-hover:text-indigo-600",
                               "h-6 w-6 shrink-0"
@@ -179,7 +186,7 @@ export default function Sidebar(props: { userType: "student" | "business", stude
                             aria-hidden="true"
                           />
                           {item.name}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -192,7 +199,10 @@ export default function Sidebar(props: { userType: "student" | "business", stude
                   >
                     <UserIcon className="h-8 w-8 rounded-full bg-gray-50 border border-gray-300" />
                     <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">{props.studentUser?.firstName}{" "}{props.studentUser?.lastName}</span>
+                    <span aria-hidden="true">
+                      {props.studentUser?.firstName}{" "}
+                      {props.studentUser?.lastName}
+                    </span>
                   </a>
                 </li>
               </ul>
