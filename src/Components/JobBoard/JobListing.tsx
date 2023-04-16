@@ -1,9 +1,11 @@
 import Avatar from "Components/Avatar";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { dateDifference } from "utils/dateDifference";
 import FancyButton from "Components/FancyButton";
-
+import Swal from "sweetalert2";
+import {update, ref} from "firebase/database";
+import { FirebaseContext } from "@auth/FirebaseContext";
 export default function JobListing(props: {
   companyName: string;
   projectTitle: string;
@@ -13,6 +15,9 @@ export default function JobListing(props: {
   companyDescription: string;
   createdAt: Date;
   companyLogoURL: string;
+  currUid: string;
+  jobId:string;
+  employerId:string;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -27,6 +32,9 @@ export default function JobListing(props: {
         projectTimeline={props.projectTimeline}
         companyDescription={props.companyDescription}
         createdAt={props.createdAt}
+        currUid={props.currUid}
+        jobId={props.jobId}
+        employerId={props.employerId}
       />
       <div onClick={() => setOpen(true)} className="hover:cursor-pointer">
         <div className="max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-md">
@@ -76,6 +84,9 @@ const JobListingModal = (props: {
   projectTimeline: string;
   companyDescription: string;
   createdAt: Date;
+  currUid: string;
+  jobId:string;
+  employerId:string;
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -119,6 +130,9 @@ const JobListingModal = (props: {
                   projectTimeline={props.projectTimeline}
                   companyDescription={props.companyDescription}
                   createdAt={props.createdAt}
+                  currUid={props.currUid}
+                  jobId={props.jobId}
+                  employerId={props.employerId}
                 />
                 {/* </div> */}
               </Dialog.Panel>
@@ -138,7 +152,11 @@ const JobListingModelContent = (props: {
   projectTimeline: string;
   companyDescription: string;
   createdAt: Date;
+  currUid: string;
+  jobId:string;
+  employerId:string;
 }) => {
+  const database = useContext(FirebaseContext).database;
   return (
     <div className="overflow-hidden bg-white shadow-md">
       <img
@@ -166,7 +184,36 @@ const JobListingModelContent = (props: {
             </span>
           </div>
 
-          <FancyButton />
+          <div
+            onClick={() => {
+              //@ts-ignore
+              Swal.fire({
+                title: "Application Form",
+                input:'textarea',
+                inputLabel: "Compose a 75+ word statement justifying why you are the ideal candidate for the job.",
+                inputPlaceholder: "I believe I am the ideal candidate because...",
+                inputAttributes: {
+                  "aria-label": "Type your message here",
+                },
+                width: "65%",
+                inputValidator: (value) => {
+                  return new Promise((resolve) => {
+                    if (value.split(" ").length>=75) {
+                      resolve("");
+                    } else {
+                      resolve('Your statement must be at least 75 words. Currently, it is ' + value.split(" ").length + ' words.')
+                    }
+                  })
+                }
+              }).then((res) => {
+                if(res.isConfirmed) {
+                  update(ref(database, "students/" + props.currUid + "/applications/" + props.jobId), {employerId:props.employerId,whyThisProject:res.value});
+                }
+              });
+            }}
+          >
+            <FancyButton />
+          </div>
 
           <div className="flex flex-col">
             <h2 className="mt-4 text-lg text-gray-700 font-semibold">
