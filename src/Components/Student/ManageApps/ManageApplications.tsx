@@ -41,6 +41,7 @@ export default function ManageApplications(props: {
                           <span>Business Name</span>
                         </div>
                       </th>
+                      
 
                       <th
                         scope="col"

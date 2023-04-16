@@ -55,7 +55,6 @@ const ApplicationRow = (props: {
         <td
           onClick={() => {
             setOpen(true);
-            console.log("aodhjfs");
           }}
           className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap"
         >

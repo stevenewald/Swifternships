@@ -72,7 +72,7 @@ export default function ManageAppsModalContent(props: {
               Your Application
             </h1>
             <h2 className="mt-4 text-lg text-gray-700 font-semibold">
-              Why are you interested in working at [Business]?
+              Why are you interested in working at {props.application.companyName}?
             </h2>
             <p className="mt-1 text-md text-gray-600">
               {props.application.whyThisProject}

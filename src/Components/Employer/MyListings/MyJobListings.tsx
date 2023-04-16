@@ -155,7 +155,7 @@ const JobListing = (props: {
 
           <div className="mt-4">
             <div className="flex items-center">
-              <span className="text-xs text-gray-600">21 SEP 2015</span>
+              <span className="text-xs text-gray-600">April 15, 2023</span>
             </div>
           </div>
         </div>
@@ -247,7 +247,7 @@ const JobListingModelContent = (props: {
           </span>
           <div>
             <span className="mr-1 text-sm text-gray-600">
-              POSTED: {dateDifference(new Date("2023-01-01T00:00:00.000Z"))}
+              POSTED: 1 day ago
             </span>
             <span className="mx-1 text-sm text-gray-600">·</span>
             <span className="ml-1 text-sm text-gray-600">

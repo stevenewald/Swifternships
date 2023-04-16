@@ -72,7 +72,7 @@ export default function JobBoardPage(props: { currTab: number; user: any }) {
               projectTitle: job.projectTitle,
               projectDescription: job.projectDescription,
               jobLocation: job.jobLocation,
-              projectTimeline: job.jobTimeline,
+              jobTimeline: job.jobTimeline,
               companyDescription: employer.companyDescription,
               createdAt: job.createdAt,
               companyLogoURL: employer.logo_link,

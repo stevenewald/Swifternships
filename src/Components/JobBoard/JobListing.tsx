@@ -262,7 +262,7 @@ const JobListingModelContent = (props: {
             </p>
 
             <h2 className="mt-4 text-lg text-gray-700 font-semibold">
-              Project Timeline:
+              Project Duration:
             </h2>
             <p className="mt-1 text-md text-gray-600">
               {props.projectTimeline}
