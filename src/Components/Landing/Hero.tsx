@@ -22,13 +22,14 @@ export default function Hero() {
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="#" className="flex items-center -m-1.5 p-1.5">
               <span className="sr-only">Swifternships</span>
               <img
-                className="h-10 w-auto"
+                className="h-12 w-auto"
                 src={Logo}
                 alt="Swifternships"
               />
+              <p className="text-xl ml-1 logofont text-indigo-700">Swift</p><p className="text-xl logofont">ernships</p>
             </a>
           </div>
           <div className="flex lg:hidden">

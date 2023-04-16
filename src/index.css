@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Montserrat:wght@700&display=swap');
+
+.logofont {
+  font-family: 'Amatic SC', cursive;
+  font-family: 'Montserrat', sans-serif;
+}
+
 html {
     scroll-behavior: smooth;
 }

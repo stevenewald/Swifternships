@@ -374,6 +374,8 @@ export default function StudentSignup(props: { user: any }) {
                         <option>Sophomore</option>
                         <option>Junior</option>
                         <option>Senior</option>
+                        <option>Masters</option>
+                        <option>PhD</option>
                       </select>
                     </div>
                   </div>
