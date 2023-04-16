@@ -14,6 +14,7 @@ export default function JobBoardPage(props:{currTab:number, user:any}) {
       Object.keys(employerSnapshot.val()).map((employerUID:any) => {const employer = employerSnapshot.val()[employerUID]; if(!employer.jobs) {return};newListings.push(
         Object.keys(employer.jobs).map((jobId:any) => {const job = employer.jobs[jobId]; return (
            <JobListing companyName={employer.companyName}
+           currUid={props.user.uid}
            projectTitle={job.projectTitle}
            projectDescription={
              job.projectDescription
@@ -27,6 +28,8 @@ export default function JobBoardPage(props:{currTab:number, user:any}) {
            }
            createdAt={job.createdAt}
            companyLogoURL={employer.logo_link}
+           jobId={jobId}
+            employerId={employerUID}
             />
         )})
       )})
