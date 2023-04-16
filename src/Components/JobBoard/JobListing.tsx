@@ -4,11 +4,29 @@ import { Dialog, Transition } from "@headlessui/react";
 import { dateDifference } from "utils/dateDifference";
 import FancyButton from "Components/FancyButton";
 
-export default function JobListing() {
+export default function JobListing(props: {
+  companyName: string;
+  projectTitle: string;
+  projectDescription: string;
+  jobLocation: string;
+  projectTimeline: string;
+  companyDescription: string;
+  createdAt: Date;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <JobListingModal open={open} setOpen={setOpen} />
+      <JobListingModal
+        open={open}
+        setOpen={setOpen}
+        companyName={props.companyName}
+        projectTitle={props.projectTitle}
+        projectDescription={props.projectDescription}
+        jobLocation={props.jobLocation}
+        projectTimeline={props.projectTimeline}
+        companyDescription={props.companyDescription}
+        createdAt={props.createdAt}
+      />
       <div onClick={() => setOpen(true)} className="hover:cursor-pointer">
         <div className="max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-md">
           {/* <img className="object-cover w-full h-64" src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Article"> */}
@@ -18,7 +36,7 @@ export default function JobListing() {
               <div className="flex items-center gap-4">
                 <Avatar size={8} />
                 <span className="text-xs font-medium text-blue-600 uppercase">
-                  Business Name
+                  {props.companyName}
                 </span>
               </div>
               <a
@@ -26,25 +44,17 @@ export default function JobListing() {
                 className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
                 role="link"
               >
-                Job Title
+                {props.projectTitle}
               </a>
               <p className="mt-2 text-sm text-gray-600">
-                As hostU moves towards Phase 1 of its shared economy rental
-                platform for university students, it is essential to have a
-                market strategist to develop and implement a comprehensive
-                marketing plan that focuses on driving up KPIs and gaining
-                traction on social media platforms. We are looking for a
-                marketing strategist who can provide valuable insights into
-                competitor analysis, market trends, and user behavior to help
-                hostU differentiate itself in a highly competitive market and
-                establish a strong brand identity.
+                {props.projectDescription}
               </p>
             </div>
 
             <div className="mt-4">
               <div className="flex items-center">
                 <span className="text-xs text-gray-600">
-                  21 SEP 2015
+                  {dateDifference(props.createdAt)}
                 </span>
               </div>
             </div>
@@ -58,6 +68,13 @@ export default function JobListing() {
 const JobListingModal = (props: {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  companyName: string;
+  projectTitle: string;
+  projectDescription: string;
+  jobLocation: string;
+  projectTimeline: string;
+  companyDescription: string;
+  createdAt: Date;
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -93,7 +110,15 @@ const JobListingModal = (props: {
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 w-full max-w-5xl mx-4">
                 {/* <div className="bg-white px-4 pb-4 pt-5 p-6 pb-4"> */}
-                <JobListingModelContent />
+                <JobListingModelContent
+                  companyName={props.companyName}
+                  projectTitle={props.projectTitle}
+                  projectDescription={props.projectDescription}
+                  jobLocation={props.jobLocation}
+                  projectTimeline={props.projectTimeline}
+                  companyDescription={props.companyDescription}
+                  createdAt={props.createdAt}
+                />
                 {/* </div> */}
               </Dialog.Panel>
             </Transition.Child>
@@ -104,7 +129,15 @@ const JobListingModal = (props: {
   );
 };
 
-const JobListingModelContent = () => {
+const JobListingModelContent = (props: {
+  companyName: string;
+  projectTitle: string;
+  projectDescription: string;
+  jobLocation: string;
+  projectTimeline: string;
+  companyDescription: string;
+  createdAt: Date;
+}) => {
   return (
     <div className="overflow-hidden bg-white shadow-md">
       <img
@@ -116,21 +149,19 @@ const JobListingModelContent = () => {
       <div className="p-6">
         <div>
           <h1 className="block text-3xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline">
-            Project Title
+            {props.projectTitle}
           </h1>
           <span className="mt-1 text-sm font-medium text-indigo-600 uppercase">
-            Company Name
+            {props.companyName}
           </span>
 
           <div>
             <span className="mr-1 text-sm text-gray-600">
-              POSTED: {dateDifference(new Date("2023-01-01T00:00:00.000Z"))}
+              POSTED: {dateDifference(props.createdAt)}
             </span>
-            <span className="mx-1 text-sm text-gray-600">
-              ·
-            </span>
+            <span className="mx-1 text-sm text-gray-600">·</span>
             <span className="ml-1 text-sm text-gray-600">
-              LOCATION: Evanston, IL. (On-Site)
+              LOCATION: {props.jobLocation}
             </span>
           </div>
 
@@ -141,32 +172,20 @@ const JobListingModelContent = () => {
               Company Description:
             </h2>
             <p className="mt-1 text-md text-gray-600">
-              businessId: string (foreign key for Users Collection) jobTitle:
-              string projectTitle: string jobDescription: string tags: string[]
-              projectTimeline: string createdAt: Date updatedAt: Date Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit. Molestie
-              parturient et sem ipsum volutpat vel. Natoque sem et aliquam
-              mauris egestas quam volutpat viverra. In pretium nec senectus
-              erat. Et malesuada lobortis.
+              {props.companyDescription}
             </p>
             <h2 className="mt-4 text-lg text-gray-700 font-semibold">
               Project Description:
             </h2>
             <p className="mt-1 text-md text-gray-600">
-              businessId: string (foreign key for Users Collection) jobTitle:
-              string projectTitle: string jobDescription: string tags: string[]
-              projectTimeline: string createdAt: Date updatedAt: Date Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit. Molestie
-              parturient et sem ipsum volutpat vel. Natoque sem et aliquam
-              mauris egestas quam volutpat viverra. In pretium nec senectus
-              erat. Et malesuada lobortis.
+              {props.projectDescription}
             </p>
 
             <h2 className="mt-4 text-lg text-gray-700 font-semibold">
               Project Timeline:
             </h2>
             <p className="mt-1 text-md text-gray-600">
-              might take like a few weeks idk due by 2023 Q2
+              {props.projectTimeline}
             </p>
           </div>
         </div>
