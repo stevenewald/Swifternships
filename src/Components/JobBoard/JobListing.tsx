@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { dateDifference } from "utils/dateDifference";
 import FancyButton from "Components/FancyButton";
 import Swal from "sweetalert2";
-import {update, ref} from "firebase/database";
+import { update, ref } from "firebase/database";
 import { FirebaseContext } from "@auth/FirebaseContext";
 export default function JobListing(props: {
   companyName: string;
@@ -16,8 +16,8 @@ export default function JobListing(props: {
   createdAt: Date;
   companyLogoURL: string;
   currUid: string;
-  jobId:string;
-  employerId:string;
+  jobId: string;
+  employerId: string;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -85,8 +85,8 @@ const JobListingModal = (props: {
   companyDescription: string;
   createdAt: Date;
   currUid: string;
-  jobId:string;
-  employerId:string;
+  jobId: string;
+  employerId: string;
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -153,8 +153,8 @@ const JobListingModelContent = (props: {
   companyDescription: string;
   createdAt: Date;
   currUid: string;
-  jobId:string;
-  employerId:string;
+  jobId: string;
+  employerId: string;
 }) => {
   const database = useContext(FirebaseContext).database;
   return (
@@ -189,25 +189,51 @@ const JobListingModelContent = (props: {
               //@ts-ignore
               Swal.fire({
                 title: "Application Form",
-                input:'textarea',
-                inputLabel: "Compose a 75+ word statement justifying why you are the ideal candidate for the job.",
-                inputPlaceholder: "I believe I am the ideal candidate because...",
+                input: "textarea",
+                inputLabel:
+                  "Compose a 75+ word statement justifying why you are the ideal candidate for the job.",
+                inputPlaceholder:
+                  "I believe I am the ideal candidate because...",
                 inputAttributes: {
                   "aria-label": "Type your message here",
                 },
                 width: "65%",
                 inputValidator: (value) => {
                   return new Promise((resolve) => {
-                    if (value.split(" ").length>=75) {
+                    if (value.split(" ").length >= 75) {
                       resolve("");
                     } else {
-                      resolve('Your statement must be at least 75 words. Currently, it is ' + value.split(" ").length + ' words.')
+                      resolve(
+                        "Your statement must be at least 75 words. Currently, it is " +
+                          value.split(" ").length +
+                          " words."
+                      );
                     }
-                  })
-                }
+                  });
+                },
               }).then((res) => {
-                if(res.isConfirmed) {
-                  update(ref(database, "students/" + props.currUid + "/applications/" + props.jobId), {employerId:props.employerId,whyThisProject:res.value});
+                if (res.isConfirmed) {
+                  update(
+                    ref(
+                      database,
+                      "students/" +
+                        props.currUid +
+                        "/applications/" +
+                        props.jobId
+                    ),
+                    { employerId: props.employerId, whyThisProject: res.value }
+                  ).then(() => {
+                    Swal.fire({
+                      icon: "success",
+                      title: "Application submitted!",
+                      text: "You will be notified if you are selected. Redirecting to dashboard...",
+                      timer: 2000,
+                      timerProgressBar: true,
+                      showConfirmButton: false,
+                    }).then(() => {
+                      window.location.reload();
+                    });
+                  });
                 }
               });
             }}
