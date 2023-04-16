@@ -1,10 +1,10 @@
-import { createRef, useContext } from "react";
-import { ref, update } from "firebase/database";
+import { createRef, useContext, useEffect } from "react";
+import { ref, update, get, child } from "firebase/database";
 import { getDownloadURL, ref as sRef, uploadBytes } from "firebase/storage";
 import { FirebaseContext } from "@auth/FirebaseContext";
 import Swal from "sweetalert2";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
-export default function StudentSignup(props: { user: any }) {
+export default function StudentSignup(props: { user: any, newSignup:boolean }) {
   const phoneRef = createRef<HTMLInputElement>();
   const firstNameRef = createRef<HTMLInputElement>();
   const lastNameRef = createRef<HTMLInputElement>();
@@ -16,6 +16,22 @@ export default function StudentSignup(props: { user: any }) {
   const aboutRef = createRef<HTMLTextAreaElement>();
   const database = useContext(FirebaseContext).database;
   const storage = useContext(FirebaseContext).storage;
+
+  useEffect(() => {
+    if(props.user && !props.newSignup) {
+      console.log(props.user.uid);
+      get(child(ref(database), "students/" + props.user.uid)).then((snapshot) => {
+        const student = snapshot.val();
+        phoneRef.current.value = student.phone;
+        firstNameRef.current.value = student.firstName;
+        lastNameRef.current.value = student.lastName;
+        yearRef.current.value = student.year;
+        gpaRef.current.value = student.gpa;
+        majorRef.current.value = student.major;
+        aboutRef.current.value = student.about;
+      });
+    }
+  }, [props.user])
 
   function completeSignup() {
     if (phoneRef.current.value.length < 5) {
@@ -135,22 +151,29 @@ export default function StudentSignup(props: { user: any }) {
       alert("No user!");
       return;
     }
+    const text = props.newSignup ? "Redirecting to dashboard..." : "Redirecting to profile...";
+    const timer = props.newSignup ? 2000 : 1000;
+    const title = props.newSignup ? "Signup Complete!" : "Profile Updated!";
     update(ref(database, "students/" + props.user.uid), updateVal).then(() => {
       Swal.fire({
         icon: "success",
-        title: "Signup Complete!",
-        text: "Redirecting to dashboard...",
-        timer: 2000,
+        title: title,
+        text: text,
+        timer: timer,
         timerProgressBar: true,
       }).then(() => {
-        window.location.href = "/student";
+        if(props.newSignup) {
+          window.location.href = "/student";
+        } else {
+          window.location.reload();
+        }
       });
     });
   }
 
   return (
-    <div className="bg-gray-50">
-      <div className="px-6 pt-8 sm:pt-16 lg:px-8">
+    <div className={props.newSignup ? "bg-gray-50" : "bg-gray-50"}>
+      {props.newSignup && <div className="px-6 pt-8 sm:pt-16 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Student Signup
@@ -159,7 +182,7 @@ export default function StudentSignup(props: { user: any }) {
             Filling out this form will help companies get to know you better.
           </p>
         </div>
-      </div>
+      </div>}
 
       <div className="mx-auto max-w-7xl pt-24 pb-16 sm:px-6 sm:pt-32 sm:pt-20 lg:px-8">
         <div className="space-y-10 divide-y divide-gray-900/10">
@@ -702,7 +725,7 @@ export default function StudentSignup(props: { user: any }) {
             onClick={completeSignup}
             className="mt-10 ml-3 mr-3 sm:mr-0 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
-            Submit
+            {props.newSignup ? "Submit" : "Save Changes"}
           </button>
         </div>
       </div>

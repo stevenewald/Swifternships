@@ -104,13 +104,14 @@ export default function Sidebar(props: {
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
-                    <div className="flex h-16 shrink-0 items-center">
+                    <a href="/" className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
                         src={Logo}
                         alt="Swifternship"
                       />
-                    </div>
+                      <p className="text-xl ml-1 logofont text-indigo-700">Swift</p><p className="text-xl logofont">ernships</p>
+                    </a>
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
@@ -120,6 +121,7 @@ export default function Sidebar(props: {
                                 <button
                                   onClick={() => {
                                     props.setCurrTab(item.id);
+                                    setSidebarOpen(false);
                                   }}
                                   className={classNames(
                                     item.id == props.currTab
@@ -156,9 +158,10 @@ export default function Sidebar(props: {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
-            <div className="pt-2 flex h-16 shrink-0 items-center">
+            <a href="/" className="pt-2 flex h-16 shrink-0 items-center">
               <img className="h-10 w-auto" src={Logo} alt="Swifternship" />
-            </div>
+              <p className="text-xl ml-1 logofont text-indigo-700">Swift</p><p className="text-xl logofont">ernships</p>
+            </a>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
@@ -193,9 +196,9 @@ export default function Sidebar(props: {
                 </li>
 
                 <li className="-mx-6 mt-auto">
-                  <a
-                    href="#"
-                    className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+                  <button
+                  onClick={() => {props.setCurrTab(1)}}
+                    className="flex w-full items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50 cursor-pointer"
                   >
                     <UserIcon className="h-8 w-8 rounded-full bg-gray-50 border border-gray-300" />
                     <span className="sr-only">Your profile</span>
@@ -203,7 +206,7 @@ export default function Sidebar(props: {
                       {props.studentUser?.firstName}{" "}
                       {props.studentUser?.lastName}
                     </span>
-                  </a>
+                  </button>
                 </li>
               </ul>
             </nav>
@@ -224,11 +227,6 @@ export default function Sidebar(props: {
           </div>
           <a href="#">
             <span className="sr-only">Your profile</span>
-            <img
-              className="h-8 w-8 rounded-full bg-gray-50"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-            />
           </a>
         </div>
 
