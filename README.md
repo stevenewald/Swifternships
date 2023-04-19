@@ -1,5 +1,5 @@
 # Swifternships
-Swifternships was built at WildHacks 2023, Northwestern University’s largest hackathon. It won third place overall, as well as the most creative .tech domain prize.
+Swifternships was built at WildHacks 2023, Northwestern University’s largest hackathon. It won second place overall, as well as the most creative .tech domain prize.
 
 It was developed by Andrew Pulver, Justin Dong, Ryan Newkirk, and Steve Ewald.
 ## Inspiration
